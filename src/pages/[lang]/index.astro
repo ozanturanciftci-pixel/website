@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PracticeCard from '@/components/PracticeCard.astro';
+import {
+  type Lang,
+  PRACTICE_ORDER,
+  SITE_CONTENT,
+  OFFICE_INFO,
+  buildLangPath,
+  isLang
+} from '@/content/site';
+
+const langParam = Astro.params.lang;
+if (!langParam || !isLang(langParam)) {
+  return Astro.redirect('/tr');
+}
+
+const lang = langParam as Lang;
+const t = SITE_CONTENT[lang];
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'LegalService',
+  name: 'Turançiftçi Law Firm',
+  areaServed: ['Istanbul', 'Madrid'],
+  telephone: OFFICE_INFO.phone,
+  email: OFFICE_INFO.email,
+  address: [OFFICE_INFO.istanbul.address, OFFICE_INFO.madrid.address],
+  serviceType: [
+    t.practices['tax-law'].title,
+    t.practices['corporate-law'].title,
+    t.practices['immigration-law'].title
+  ]
+};
+---
+
+<BaseLayout lang={lang} path="/" structuredData={structuredData}>
+  <section class="section-wrap pt-20">
+    <div class="glass-card rounded-[2rem] p-10 md:p-14" transition:name="hero">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">Istanbul + Madrid</p>
+      <h1 class="mt-3 max-w-3xl text-5xl leading-tight text-slate-900 md:text-6xl">{t.hero.title}</h1>
+      <p class="mt-6 max-w-3xl text-base leading-8 text-slate-700">{t.hero.description}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a class="cta-primary" href={buildLangPath(lang, '/contact')}>{t.hero.primaryCta}</a>
+        <a class="cta-secondary" href="#practice-areas">{t.hero.secondaryCta}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap mt-10 grid gap-4 md:grid-cols-3">
+    {t.trustPoints.map((point) => (
+      <div class="rounded-2xl border border-white/70 bg-white/70 p-5 text-sm font-medium text-slate-700 shadow-glow">{point}</div>
+    ))}
+  </section>
+
+  <section id="practice-areas" class="section-wrap mt-20">
+    <div class="mb-8 flex items-end justify-between gap-4">
+      <h2 class="text-4xl text-slate-900">{t.nav.practiceAreas}</h2>
+      <a href={buildLangPath(lang, '/contact')} class="text-sm font-semibold text-brand-700 hover:text-brand-900">Consultation →</a>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      {PRACTICE_ORDER.map((slug) => <PracticeCard lang={lang} slug={slug} />)}
+    </div>
+  </section>
+</BaseLayout>

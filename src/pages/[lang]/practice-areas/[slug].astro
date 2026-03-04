@@ -1,0 +1,38 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { PRACTICE_ORDER, type Lang, type PracticeSlug, SITE_CONTENT, buildLangPath, isLang } from '@/content/site';
+
+const langParam = Astro.params.lang;
+const slugParam = Astro.params.slug;
+
+if (!langParam || !isLang(langParam)) {
+  return Astro.redirect('/tr');
+}
+const lang = langParam as Lang;
+if (!slugParam || !PRACTICE_ORDER.includes(slugParam as PracticeSlug)) {
+  return Astro.redirect(buildLangPath(lang));
+}
+const slug = slugParam as PracticeSlug;
+const item = SITE_CONTENT[lang].practices[slug];
+---
+
+<BaseLayout lang={lang} path={`/practice-areas/${slug}`} title={item.title} description={item.summary}>
+  <section class="section-wrap pt-16">
+    <a href={buildLangPath(lang)} class="text-sm font-semibold text-brand-700 hover:text-brand-900">← Back</a>
+    <article class="glass-card mt-6 rounded-[2rem] p-10" transition:name={`practice-${slug}`}>
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">{item.title}</p>
+      <h1 class="mt-2 text-5xl text-slate-900">{item.subtitle}</h1>
+      <p class="mt-6 max-w-4xl text-lg leading-8 text-slate-700">{item.summary}</p>
+
+      <ul class="mt-8 grid gap-4 md:grid-cols-2">
+        {item.bullets.map((bullet) => (
+          <li class="rounded-xl border border-slate-200 bg-white/80 p-4 text-sm leading-7 text-slate-700">{bullet}</li>
+        ))}
+      </ul>
+
+      <a class="cta-primary mt-10" href={buildLangPath(lang, '/contact')}>
+        {item.cta}
+      </a>
+    </article>
+  </section>
+</BaseLayout>

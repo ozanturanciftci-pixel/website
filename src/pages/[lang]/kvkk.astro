@@ -1,0 +1,18 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { type Lang, SITE_CONTENT, isLang } from '@/content/site';
+
+const langParam = Astro.params.lang;
+if (!langParam || !isLang(langParam)) return Astro.redirect('/tr');
+const lang = langParam as Lang;
+const legal = SITE_CONTENT[lang].legal;
+---
+
+<BaseLayout lang={lang} path="/kvkk" title={legal.kvkkTitle}>
+  <section class="section-wrap pt-16">
+    <article class="glass-card rounded-[2rem] p-10">
+      <h1 class="text-4xl text-slate-900">{legal.kvkkTitle}</h1>
+      <p class="mt-6 text-base leading-8 text-slate-700">{legal.kvkkBody}</p>
+    </article>
+  </section>
+</BaseLayout>

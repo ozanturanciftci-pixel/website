@@ -1,0 +1,30 @@
+CREATE TABLE IF NOT EXISTS contact_messages (
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  full_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  preferred_language TEXT NOT NULL,
+  subject TEXT NOT NULL,
+  message TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'new',
+  ip_hash TEXT NOT NULL,
+  user_agent TEXT NOT NULL,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS admin_users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  email TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  created_at INTEGER NOT NULL,
+  last_login_at INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS admin_sessions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  user_id INTEGER NOT NULL,
+  token_hash TEXT NOT NULL UNIQUE,
+  expires_at INTEGER NOT NULL,
+  created_at INTEGER NOT NULL
+);

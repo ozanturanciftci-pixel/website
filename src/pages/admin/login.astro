@@ -1,0 +1,68 @@
+---
+import { getSessionCookieName, getAdminUserFromToken } from '@/lib/auth';
+import '@/styles/global.css';
+
+const existingToken = Astro.cookies.get(getSessionCookieName())?.value;
+const existingUser = await getAdminUserFromToken(existingToken);
+
+if (existingUser) {
+  return Astro.redirect('/admin/messages');
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+  </head>
+  <body>
+    <main class="section-wrap py-20">
+      <section class="glass-card mx-auto max-w-md rounded-[2rem] p-8">
+        <h1 class="text-3xl text-slate-900">Admin Login</h1>
+        <p class="mt-2 text-sm text-slate-600">Use the seeded admin credentials.</p>
+
+        <form id="admin-login-form" class="mt-6 space-y-4" method="post" action="/api/admin/login">
+          <label class="block text-sm font-semibold text-slate-700">
+            Email
+            <input type="email" name="email" required class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-4 py-3" />
+          </label>
+
+          <label class="block text-sm font-semibold text-slate-700">
+            Password
+            <input type="password" name="password" required class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-4 py-3" />
+          </label>
+
+          <button class="cta-primary w-full" type="submit">Sign In</button>
+          <p id="admin-feedback" class="text-sm"></p>
+        </form>
+      </section>
+    </main>
+
+    <script is:inline>
+      const form = document.getElementById('admin-login-form');
+      const feedback = document.getElementById('admin-feedback');
+
+      form?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        feedback.textContent = '';
+        const formData = new FormData(form);
+
+        const response = await fetch('/api/admin/login', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+        if (result.ok) {
+          window.location.href = '/admin/messages';
+          return;
+        }
+
+        feedback.textContent = result.message;
+        feedback.className = 'text-sm text-red-700';
+      });
+    </script>
+  </body>
+</html>

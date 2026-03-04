@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { type Lang, SITE_CONTENT, isLang } from '@/content/site';
+
+const langParam = Astro.params.lang;
+if (!langParam || !isLang(langParam)) {
+  return Astro.redirect('/tr');
+}
+
+const lang = langParam as Lang;
+const t = SITE_CONTENT[lang].about;
+---
+
+<BaseLayout lang={lang} path="/about" title={t.title} description={t.lead}>
+  <section class="section-wrap pt-16">
+    <article class="glass-card rounded-[2rem] p-10 md:p-14">
+      <h1 class="text-5xl text-slate-900">{t.title}</h1>
+      <p class="mt-6 text-xl leading-9 text-slate-700">{t.lead}</p>
+
+      <div class="mt-10 space-y-6 text-base leading-8 text-slate-700">
+        {t.paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </article>
+  </section>
+</BaseLayout>

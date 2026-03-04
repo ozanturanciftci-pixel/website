@@ -1,0 +1,14 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "id": "placeholder",
+  "prevId": "placeholder",
+  "tables": {},
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}

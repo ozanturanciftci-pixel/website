@@ -1,0 +1,80 @@
+---
+import { getSessionCookieName, getAdminUserFromToken } from '@/lib/auth';
+import { listMessages } from '@/lib/actions';
+import '@/styles/global.css';
+
+const token = Astro.cookies.get(getSessionCookieName())?.value;
+const user = await getAdminUserFromToken(token);
+
+if (!user) {
+  return Astro.redirect('/admin/login');
+}
+
+const statusFilter = Astro.url.searchParams.get('status') ?? '';
+const allowed = new Set(['new', 'in_review', 'replied', 'archived']);
+const messages = await listMessages(allowed.has(statusFilter) ? statusFilter : undefined);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Messages</title>
+  </head>
+  <body>
+    <main class="section-wrap py-12">
+      <div class="mb-6 flex items-center justify-between gap-4">
+        <h1 class="text-4xl text-slate-900">Incoming Messages</h1>
+        <form method="post" action="/api/admin/logout">
+          <button class="cta-secondary" type="submit">Logout</button>
+        </form>
+      </div>
+
+      <form method="get" class="mb-6 flex items-center gap-3">
+        <select name="status" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm">
+          <option value="">All statuses</option>
+          <option value="new" selected={statusFilter === 'new'}>new</option>
+          <option value="in_review" selected={statusFilter === 'in_review'}>in_review</option>
+          <option value="replied" selected={statusFilter === 'replied'}>replied</option>
+          <option value="archived" selected={statusFilter === 'archived'}>archived</option>
+        </select>
+        <button class="cta-secondary" type="submit">Filter</button>
+      </form>
+
+      <div class="space-y-4">
+        {
+          messages.map((message) => (
+            <article class="glass-card rounded-2xl p-6">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{message.preferredLanguage}</p>
+                  <h2 class="text-xl text-slate-900">{message.subject}</h2>
+                  <p class="text-sm text-slate-600">
+                    {message.fullName} · {message.email} · {message.phone}
+                  </p>
+                </div>
+                <p class="text-xs text-slate-500">{new Date(message.createdAt).toLocaleString()}</p>
+              </div>
+
+              <p class="mt-4 whitespace-pre-wrap text-sm leading-7 text-slate-700">{message.message}</p>
+
+              <form class="mt-4 flex items-center gap-3" method="post" action={`/api/admin/messages/${message.id}/status`}>
+                <input type="hidden" name="id" value={message.id} />
+                <select name="status" class="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm">
+                  <option value="new" selected={message.status === 'new'}>new</option>
+                  <option value="in_review" selected={message.status === 'in_review'}>in_review</option>
+                  <option value="replied" selected={message.status === 'replied'}>replied</option>
+                  <option value="archived" selected={message.status === 'archived'}>archived</option>
+                </select>
+                <button class="cta-primary !px-4 !py-2" type="submit">Update</button>
+              </form>
+            </article>
+          ))
+        }
+
+        {messages.length === 0 && <p class="rounded-xl bg-white/80 p-6 text-sm text-slate-600">No messages found.</p>}
+      </div>
+    </main>
+  </body>
+</html>

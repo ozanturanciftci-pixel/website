@@ -1,0 +1,43 @@
+---
+import { type Lang, SITE_CONTENT, LANGS, buildLangPath } from '@/content/site';
+
+type Props = {
+  lang: Lang;
+  path?: string;
+};
+
+const { lang, path = '' } = Astro.props;
+const t = SITE_CONTENT[lang];
+---
+
+<header class="sticky top-0 z-50 border-b border-white/50 bg-white/75 backdrop-blur-xl">
+  <div class="section-wrap flex items-center justify-between py-4">
+    <a href={buildLangPath(lang)} class="text-base font-extrabold tracking-[0.14em] text-slate-900" transition:name="brand">
+      TURANCIFTCI LAW FIRM
+    </a>
+
+    <nav class="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
+      <a href={buildLangPath(lang)} class="hover:text-slate-900">{t.nav.home}</a>
+      <a href={buildLangPath(lang, '/#practice-areas')} class="hover:text-slate-900">{t.nav.practiceAreas}</a>
+      <a href={buildLangPath(lang, '/about')} class="hover:text-slate-900">{t.nav.about}</a>
+      <a href={buildLangPath(lang, '/contact')} class="hover:text-slate-900">{t.nav.contact}</a>
+      <a href="/admin/login" class="hover:text-slate-900">{t.nav.admin}</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      {
+        LANGS.map((item) => (
+          <a
+            href={buildLangPath(item, path)}
+            class={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest ${
+              item === lang ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+            }`}
+            transition:name={`lang-${item}`}
+          >
+            {item}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</header>

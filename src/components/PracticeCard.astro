@@ -1,0 +1,15 @@
+---
+import { type Lang, type PracticeSlug, SITE_CONTENT, buildLangPath } from '@/content/site';
+
+const { lang, slug } = Astro.props as { lang: Lang; slug: PracticeSlug };
+const item = SITE_CONTENT[lang].practices[slug];
+---
+
+<article class="glass-card rounded-3xl p-7" transition:name={`practice-${slug}`}>
+  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">{item.title}</p>
+  <h3 class="mt-2 text-2xl text-slate-900">{item.subtitle}</h3>
+  <p class="mt-4 text-sm leading-7 text-slate-700">{item.summary}</p>
+  <a href={buildLangPath(lang, `/practice-areas/${slug}`)} class="mt-6 inline-flex text-sm font-semibold text-brand-700 hover:text-brand-900">
+    {item.cta} →
+  </a>
+</article>
