@@ -169,7 +169,7 @@ h4 {
 
 .header-home .nav-tab {
   font-family: 'Gantari', 'Segoe UI', sans-serif;
-  font-size: 1.08rem;
+  font-size: 1.12rem;
   letter-spacing: 0.01em;
   border-radius: 999px;
   padding: 0.2rem 0.66rem;
@@ -192,7 +192,7 @@ h4 {
 }
 
 .header-home .brand-name-image {
-  filter: brightness(0) saturate(100%) invert(91%) sepia(19%) saturate(571%) hue-rotate(349deg) brightness(106%) contrast(94%);
+  filter: brightness(0) saturate(100%) invert(100%);
 }
 
 .header-home .brand-t-image {
@@ -247,7 +247,7 @@ h4 {
 }
 
 .header-home.header-scrolled .nav-tab {
-  color: rgba(234, 217, 183, 0.94);
+  color: rgba(255, 248, 234, 0.96);
   text-shadow: none;
   opacity: 1;
   border-radius: 999px;
@@ -261,12 +261,12 @@ h4 {
   border-radius: 999px;
   padding: 0.34rem 1rem;
   background: rgba(24, 34, 50, 0.72) !important;
-  color: #ead9b7 !important;
+  color: #fff8ea !important;
   opacity: 1;
-  border: 1px solid rgba(234, 217, 183, 0.62) !important;
+  border: 1px solid rgba(255, 248, 234, 0.62) !important;
   box-shadow:
     0 10px 22px rgba(6, 10, 18, 0.28),
-    inset 0 0 0 1px rgba(234, 217, 183, 0.14) !important;
+    inset 0 0 0 1px rgba(255, 248, 234, 0.14) !important;
   font-weight: 800 !important;
   text-decoration: none !important;
   text-shadow: none !important;
@@ -290,7 +290,7 @@ h4 {
 
 .header-solid .nav-tab {
   font-family: 'Gantari', 'Segoe UI', sans-serif;
-  font-size: 1.02rem;
+  font-size: 1.06rem;
   letter-spacing: 0.01em;
   border-radius: 999px;
   padding: 0.2rem 0.66rem;

@@ -434,6 +434,8 @@ const copy = uiCopy[lang];
     let heroCollapsed = false;
     let snapInProgress = false;
     let snapTimer = 0;
+    let lastY = window.scrollY;
+    let sectionLockUntil = 0;
     const applyHeroCollapsed = (next) => {
       heroCollapsed = next;
       if (heroStage) heroStage.classList.toggle('hero-stage-collapsed', heroCollapsed);
@@ -479,6 +481,30 @@ const copy = uiCopy[lang];
       const updateStageOnScroll = () => {
         const y = window.scrollY;
         const hasSectionHash = !!(window.location.hash && window.location.hash.length > 1);
+        const now = Date.now();
+        const aboutTop = getAboutTop();
+
+        // On first descent from hero, hard-stop at About start to prevent skipping.
+        if (
+          !hasSectionHash &&
+          now >= sectionLockUntil &&
+          Number.isFinite(aboutTop) &&
+          aboutTop > 0 &&
+          lastY < aboutTop - 24 &&
+          y >= aboutTop - 24 &&
+          y < aboutTop + 260
+        ) {
+          snapInProgress = true;
+          sectionLockUntil = now + 320;
+          applyHeroCollapsed(true);
+          window.scrollTo({ top: Math.max(0, aboutTop), behavior: 'auto' });
+          window.setTimeout(() => {
+            snapInProgress = false;
+          }, 260);
+          lastY = Math.max(0, aboutTop);
+          return;
+        }
+
         // If user is navigating sections, keep hero collapsed to prevent jump/flicker.
         if (hasSectionHash && y > 10) {
           applyHeroCollapsed(true);
@@ -495,6 +521,7 @@ const copy = uiCopy[lang];
         if (!hasSectionHash) {
           queueSnapResolve();
         }
+        lastY = y;
       };
 
       updateStageOnScroll();
