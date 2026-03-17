@@ -22,10 +22,10 @@ const sectionHref = (section: string) => (isHome ? `#${section}` : buildLangPath
 >
   <div class="mx-auto flex w-full min-h-[83px] items-center justify-between gap-4 px-5 py-0 md:min-h-[98px] md:gap-6 md:px-9 xl:px-14">
     <a href={buildLangPath(lang)} class="header-brand" transition:name="brand">
-      <img src="/assets/frame-48.svg" alt="Turançiftçi Law Firm" class="brand-name-image h-6 w-auto max-w-[220px] object-contain md:h-7" />
+      <img src="/assets/frame-48.svg" alt="Turançiftçi Law Firm" class="brand-name-image h-8 w-auto max-w-[255px] object-contain md:h-9" />
     </a>
 
-    <nav id="header-nav-shell" class="header-nav-shell absolute left-1/2 hidden -translate-x-1/2 items-center gap-3 text-sm font-semibold md:flex md:gap-4">
+    <nav id="header-nav-shell" class="header-nav-shell absolute left-1/2 hidden -translate-x-1/2 items-center gap-3 text-sm font-normal md:flex md:gap-4">
       <a id="tab-about" href={sectionHref('about')} class="nav-tab">{t.nav.about}</a>
       <a id="tab-practices" href={sectionHref('practices')} class="nav-tab">{t.nav.practiceAreas}</a>
       <a id="tab-contact" href={sectionHref('contact')} class="nav-tab">{t.nav.contact}</a>
@@ -41,7 +41,7 @@ const sectionHref = (section: string) => (isHome ? `#${section}` : buildLangPath
               href={buildLangPath(item, path)}
               data-lang={item}
               data-lang-switch="true"
-              class={`rounded-full px-2.5 py-1 text-xs font-semibold tracking-wider ${
+              class={`rounded-full px-2.5 py-1 font-normal ${
                 item === lang ? 'lang-active' : 'lang-idle'
               }`}
             >

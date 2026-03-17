@@ -22,18 +22,18 @@ const istanbulMapOpenUrl = `https://www.google.com/maps/search/?api=1&query=${is
 const heroCopy: Record<Lang, { kicker: string; title: string; subtitle: string }> = {
   tr: {
     kicker: 'Turançiftçi Hukuk Bürosu',
-    title: 'Gücü Hukukta.\nNetlik Stratejide.',
-    subtitle: 'Vergi, şirketler ve yabancılar hukukunda sonuç odaklı, uluslararası erişilebilir hukuki danışmanlık.'
+    title: 'Hukukta Doğruluk\nDanışmanlıkta Güvenilirlik',
+    subtitle: 'Vergi ve şirketler hukuku başta olmak üzere, uluslararası standartlarda, güvenilir ve sonuç odaklı hukuki danışmanlık ve avukatlık hizmetleri sunuyoruz'
   },
   en: {
     kicker: 'Turançiftçi Law Firm',
-    title: 'Strength in Law.\nClarity in Strategy.',
-    subtitle: 'Result-oriented legal counsel in tax, corporate and immigration law with international accessibility.'
+    title: 'Precision in Law\nReliability in Advisory',
+    subtitle: 'We provide reliable and result-oriented legal advisory and advocacy services at international standards, with a focus on tax and corporate law'
   },
   es: {
     kicker: 'Bufete Turançiftçi',
-    title: 'Fuerza en Derecho.\nClaridad en Estrategia.',
-    subtitle: 'Asesoria legal orientada a resultados en derecho fiscal, societario y migratorio.'
+    title: 'Precisión en Derecho\nConfiabilidad en Asesoría',
+    subtitle: 'Ofrecemos servicios de asesoría y abogacía jurídica, confiables y orientados a resultados, con estándares internacionales y enfoque en derecho fiscal y societario'
   }
 };
 
@@ -176,13 +176,14 @@ const copy = uiCopy[lang];
 
         <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.52),rgba(0,0,0,0.28),rgba(0,0,0,0.48))]"></div>
         <div id="hero-copy" class="hero-copy-shell absolute inset-x-0 z-10 text-[#f8f1df]">
-          <div class="grid w-full items-end gap-6 md:grid-cols-[1fr_auto] md:gap-8">
-            <div class="max-w-3xl">
-              <p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#ead9b7]">{heroCopy[lang].kicker}</p>
-              <h1 class="mt-3 whitespace-pre-line text-5xl leading-[0.95] text-[#fff8ea] md:text-7xl">{heroCopy[lang].title}</h1>
-              <p class="mt-5 max-w-2xl text-base leading-8 text-[#f2e6cf] md:text-lg">{heroCopy[lang].subtitle}</p>
+          <div class="mx-auto w-full max-w-4xl text-center">
+            <div class="-translate-y-3 md:-translate-y-4">
+              <h1 class="whitespace-pre-line text-[2rem] leading-[1.03] text-[#fff8ea] md:text-[3.2rem]">{heroCopy[lang].title}</h1>
+              <p class="mx-auto mt-3 max-w-3xl text-sm leading-7 text-[#f2e6cf] md:text-base">
+                {heroCopy[lang].subtitle}
+              </p>
             </div>
-            <a href={`mailto:${OFFICE_INFO.email}`} class="hero-contact-pill justify-self-start self-start md:justify-self-end md:self-center" aria-label={copy.heroReach}>
+            <a href="#contact" class="hero-contact-pill mt-9 inline-flex md:mt-10" aria-label={copy.heroReach}>
               <span class="hero-contact-pill-label">{copy.heroReach}</span>
               <span class="hero-contact-pill-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -196,17 +197,16 @@ const copy = uiCopy[lang];
       </div>
     </section>
 
-    <div class="relative z-10 border-t border-[#d8d2c8] pt-12 md:pt-16">
+    <div class="relative z-10 border-t border-[#d8d2c8] pt-10 md:pt-14">
       <section id="about" data-nav-section class="relative min-h-[88vh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] py-16 md:py-20">
         <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(240,231,217,0.90),rgba(240,231,217,0.97))]"></div>
 
         <div class="section-wrap relative z-10">
           <div class="section-reveal">
-            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#7a6e60]">{copy.aboutKicker}</p>
-            <h2 class="mt-3 text-5xl leading-[0.95] text-[#2b3447] md:text-6xl" transition:name="hero">{t.about.title}</h2>
+            <h2 class="text-5xl leading-[0.95] text-[#2b3447] md:text-6xl" transition:name="hero">{t.about.title}</h2>
             <p class="mt-6 max-w-3xl text-lg leading-9 text-[#4c5568]">{t.about.lead}</p>
 
-            <div class="mt-10 space-y-4 text-base leading-8 text-[#4c5568]">
+            <div class="mt-10 space-y-5 text-lg leading-9 text-[#4c5568]">
               {t.about.paragraphs.map((paragraph) => (
                 <p>{paragraph}</p>
               ))}
@@ -224,8 +224,7 @@ const copy = uiCopy[lang];
 
         <div class="section-wrap relative z-10">
           <div class="mb-8 section-reveal">
-            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#7a6e60]">{copy.practicesKicker}</p>
-            <h2 class="mt-3 text-5xl leading-[0.95] text-[#2b3447] md:text-6xl">{copy.practicesHeading}</h2>
+            <h2 class="text-5xl leading-[0.95] text-[#2b3447] md:text-6xl">{copy.practicesKicker}</h2>
             <p class="mt-5 max-w-3xl text-lg leading-8 text-[#4c5568]">{copy.practicesLead}</p>
           </div>
 
