@@ -24,3 +24,12 @@ export const UpdateStatusSchema = z.object({
 });
 
 export type ContactFormInput = z.infer<typeof ContactFormInputSchema>;
+
+export const NewsletterInputSchema = z.object({
+  fullName: z.string().min(2).max(120),
+  email: z.string().email().max(180),
+  consent: z
+    .boolean()
+    .refine((value) => value === true, { message: 'Consent is required' }),
+  source: z.string().max(80).optional().default('website')
+});

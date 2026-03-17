@@ -1,41 +1,33 @@
 ---
-import { type Lang, OFFICE_INFO, SITE_CONTENT, buildLangPath } from '@/content/site';
+import { type Lang, buildLangPath } from '@/content/site';
 
-const { lang } = Astro.props as { lang: Lang };
-const t = SITE_CONTENT[lang];
+const { lang, path = '' } = Astro.props as { lang: Lang; path?: string };
 ---
 
-<footer class="border-t border-white/60 bg-white/70 py-12 backdrop-blur-xl">
-  <div class="section-wrap grid gap-8 md:grid-cols-3">
-    <div>
-      <p class="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">Turançiftçi Law Firm</p>
-      <p class="mt-3 text-sm text-slate-700">{t.hero.description}</p>
-    </div>
+<footer class="mt-0 bg-transparent pb-6 pt-2">
+  <div class="mx-auto w-full max-w-[98.5%] rounded-[0_0_24px_24px] border border-[#d9d1c5] border-t-0 bg-[#ddd3c4] px-8 py-8 md:px-14">
+    <div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+      <div class="space-y-4">
+        <div class="flex items-center gap-5 text-[1.05rem] font-semibold text-[#2f384a]">
+          <a href={buildLangPath('en', path)} class={lang === 'en' ? 'underline underline-offset-4' : 'opacity-85 hover:opacity-100'}>
+            <span class="mr-1">🇬🇧</span>EN
+          </a>
+          <a href={buildLangPath('tr', path)} class={lang === 'tr' ? 'underline underline-offset-4' : 'opacity-85 hover:opacity-100'}>
+            <span class="mr-1">🇹🇷</span>TR
+          </a>
+          <a href={buildLangPath('es', path)} class={lang === 'es' ? 'underline underline-offset-4' : 'opacity-85 hover:opacity-100'}>
+            <span class="mr-1">🇪🇸</span>ES
+          </a>
+        </div>
 
-    <div>
-      <p class="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">Offices</p>
-      <p class="mt-3 text-sm text-slate-700">
-        <strong>{OFFICE_INFO.istanbul.label}:</strong> {OFFICE_INFO.istanbul.address}
-      </p>
-      <p class="mt-3 text-sm text-slate-700">
-        <strong>{OFFICE_INFO.madrid.label}:</strong> {OFFICE_INFO.madrid.address}
-      </p>
-    </div>
+        <div class="text-[1.05rem] text-[#3e4758]">
+          <a href={buildLangPath(lang, '/cookies')} class="hover:text-[#2d3547]">Cookie Preferences</a>
+          <span class="mx-2 opacity-55">|</span>
+          <a href={buildLangPath(lang, '/privacy')} class="hover:text-[#2d3547]">Terms and Conditions</a>
+        </div>
+      </div>
 
-    <div>
-      <p class="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">Contact</p>
-      <a href={`tel:${OFFICE_INFO.phone}`} class="mt-3 block text-sm text-slate-700 hover:text-slate-900">{OFFICE_INFO.phone}</a>
-      <a href={`mailto:${OFFICE_INFO.email}`} class="mt-2 block text-sm text-slate-700 hover:text-slate-900">{OFFICE_INFO.email}</a>
-      <a href={OFFICE_INFO.linkedin} target="_blank" rel="noreferrer" class="mt-2 block text-sm text-brand-700 hover:text-brand-900">
-        LinkedIn
-      </a>
+      <p class="text-[1.03rem] text-[#7b7f87]">© Turançiftçi {new Date().getFullYear()}. All rights reserved.</p>
     </div>
-  </div>
-
-  <div class="section-wrap mt-8 flex flex-wrap items-center gap-4 border-t border-slate-200 pt-6 text-xs text-slate-500">
-    <a href={buildLangPath(lang, '/kvkk')}>{t.nav.kvkk}</a>
-    <a href={buildLangPath(lang, '/privacy')}>{t.nav.privacy}</a>
-    <a href={buildLangPath(lang, '/cookies')}>{t.nav.cookies}</a>
-    <span class="ml-auto">© {new Date().getFullYear()} Turançiftçi Law Firm</span>
   </div>
 </footer>

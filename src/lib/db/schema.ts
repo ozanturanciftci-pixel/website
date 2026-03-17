@@ -40,3 +40,14 @@ export const adminSessions = sqliteTable('admin_sessions', {
     .notNull()
     .$defaultFn(() => Date.now())
 });
+
+export const newsletterSubscribers = sqliteTable('newsletter_subscribers', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  fullName: text('full_name').notNull(),
+  email: text('email').notNull().unique(),
+  consent: integer('consent', { mode: 'number' }).notNull().default(1),
+  source: text('source').notNull().default('website'),
+  createdAt: integer('created_at', { mode: 'number' })
+    .notNull()
+    .$defaultFn(() => Date.now())
+});

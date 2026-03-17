@@ -8,36 +8,137 @@ type Props = {
 
 const { lang, path = '' } = Astro.props;
 const t = SITE_CONTENT[lang];
+const isHome = path === '/' || path === '';
+const sectionHref = (section: string) => (isHome ? `#${section}` : buildLangPath(lang, `/#${section}`));
 ---
 
-<header class="sticky top-0 z-50 border-b border-white/50 bg-white/75 backdrop-blur-xl">
-  <div class="section-wrap flex items-center justify-between py-4">
-    <a href={buildLangPath(lang)} class="text-base font-extrabold tracking-[0.14em] text-slate-900" transition:name="brand">
-      TURANCIFTCI LAW FIRM
+<header
+  id="site-header"
+  class={`z-50 transition-all duration-300 ${
+    isHome
+      ? 'fixed inset-x-0 top-0 header-home'
+      : 'sticky top-0 header-solid border-b border-[#d9d1c5] bg-[#f4efe6]/95 backdrop-blur-xl'
+  }`}
+>
+  <div class="mx-auto flex w-full min-h-[83px] items-center justify-between gap-4 px-5 py-0 md:min-h-[98px] md:gap-6 md:px-9 xl:px-14">
+    <a href={buildLangPath(lang)} class="header-brand" transition:name="brand">
+      <img src="/assets/frame-48.svg" alt="Turançiftçi Law Firm" class="brand-name-image h-6 w-auto max-w-[220px] object-contain md:h-7" />
     </a>
 
-    <nav class="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
-      <a href={buildLangPath(lang)} class="hover:text-slate-900">{t.nav.home}</a>
-      <a href={buildLangPath(lang, '/#practice-areas')} class="hover:text-slate-900">{t.nav.practiceAreas}</a>
-      <a href={buildLangPath(lang, '/about')} class="hover:text-slate-900">{t.nav.about}</a>
-      <a href={buildLangPath(lang, '/contact')} class="hover:text-slate-900">{t.nav.contact}</a>
-      <a href="/admin/login" class="hover:text-slate-900">{t.nav.admin}</a>
+    <nav id="header-nav-shell" class="header-nav-shell absolute left-1/2 hidden -translate-x-1/2 items-center gap-3 text-sm font-semibold md:flex md:gap-4">
+      <a id="tab-about" href={sectionHref('about')} class="nav-tab">{t.nav.about}</a>
+      <a id="tab-practices" href={sectionHref('practices')} class="nav-tab">{t.nav.practiceAreas}</a>
+      <a id="tab-contact" href={sectionHref('contact')} class="nav-tab">{t.nav.contact}</a>
     </nav>
 
-    <div class="flex items-center gap-2">
+    <div class="ml-auto hidden items-center gap-2 md:flex header-langs">
       {
-        LANGS.map((item) => (
-          <a
-            href={buildLangPath(item, path)}
-            class={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest ${
-              item === lang ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-            }`}
-            transition:name={`lang-${item}`}
-          >
-            {item}
-          </a>
-        ))
+        LANGS.map((item) => {
+          const flag = item === 'tr' ? '🇹🇷' : item === 'en' ? '🇬🇧' : '🇪🇸';
+          const label = item.toUpperCase();
+          return (
+            <a
+              href={buildLangPath(item, path)}
+              data-lang={item}
+              data-lang-switch="true"
+              class={`rounded-full px-2.5 py-1 text-xs font-semibold tracking-wider ${
+                item === lang ? 'lang-active' : 'lang-idle'
+              }`}
+            >
+              <span class="mr-1">{flag}</span>
+              {label}
+            </a>
+          );
+        })
       }
     </div>
   </div>
+
+  <script is:inline>
+    const initHeaderInteractions = () => {
+      const header = document.getElementById('site-header');
+      if (!header || header.dataset.interactionsBound === '1') return;
+      header.dataset.interactionsBound = '1';
+
+      const tabs = {
+        about: document.getElementById('tab-about'),
+        practices: document.getElementById('tab-practices'),
+        contact: document.getElementById('tab-contact')
+      };
+
+      const setActive = (key) => {
+        Object.entries(tabs).forEach(([id, element]) => {
+          if (!element) return;
+          if (key && id === key) {
+            element.classList.add('tab-active');
+          } else {
+            element.classList.remove('tab-active');
+          }
+        });
+      };
+
+      const sections = [...document.querySelectorAll('[data-nav-section]')];
+      const syncActiveOnScroll = () => {
+        if (sections.length === 0) return;
+        const headerHeight = header.offsetHeight ?? 110;
+        const threshold = headerHeight + 14;
+        const firstSection = sections[0];
+        const firstTop = firstSection?.getBoundingClientRect().top ?? Infinity;
+
+        // Hero görünür durumdayken sekme aktifliği göstermeyelim.
+        if (firstTop > threshold + 8) {
+          setActive(null);
+          return;
+        }
+
+        let current = sections[0]?.id || 'about';
+
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= threshold) {
+            current = section.id;
+          }
+        });
+        setActive(current);
+      };
+
+      const syncScrolledState = () => {
+        header.classList.toggle('header-scrolled', window.scrollY > 120);
+      };
+
+      syncActiveOnScroll();
+      syncScrolledState();
+      window.addEventListener('scroll', syncActiveOnScroll, { passive: true });
+      window.addEventListener('resize', syncActiveOnScroll);
+      window.addEventListener('scroll', syncScrolledState, { passive: true });
+
+      Object.values(tabs).forEach((tab) => {
+        tab?.addEventListener('click', () => {
+          const id = tab.getAttribute('id')?.replace('tab-', '');
+          if (id) setActive(id);
+        });
+      });
+
+      const langLinks = [...document.querySelectorAll('[data-lang-switch="true"]')];
+      langLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          const href = link.getAttribute('href');
+          if (!href) return;
+          const hash = window.location.hash || '';
+          if (hash) {
+            event.preventDefault();
+            const base = href.split('#')[0];
+            window.location.href = `${base}${hash}`;
+          }
+        });
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeaderInteractions, { once: true });
+    } else {
+      initHeaderInteractions();
+    }
+    document.addEventListener('astro:page-load', initHeaderInteractions);
+  </script>
 </header>

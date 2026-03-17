@@ -6,7 +6,7 @@ export const DEFAULT_LANG: Lang = 'tr';
 export const OFFICE_INFO = {
   istanbul: {
     label: 'Istanbul Office',
-    address: 'Placeholder: Levent, Besiktas, Istanbul, Turkiye'
+    address: 'Mayısgülü Sokak No:8 Daire:8 Kadıköy/İstanbul'
   },
   madrid: {
     label: 'Madrid Contact Office',
@@ -85,99 +85,99 @@ type SiteContent = {
 
 export const SITE_CONTENT: Record<Lang, SiteContent> = {
   tr: {
-    localeName: 'Turkce',
+    localeName: 'Türkçe',
     nav: {
       home: 'Ana Sayfa',
-      practiceAreas: 'Uzmanlik Alanlari',
-      about: 'Hakkimizda',
-      contact: 'Iletisim',
+      practiceAreas: 'Faaliyet Alanları',
+      about: 'Hakkımızda',
+      contact: 'İletişim',
       kvkk: 'KVKK',
       privacy: 'Gizlilik',
-      cookies: 'Cerez',
-      admin: 'Yonetim'
+      cookies: 'Çerez',
+      admin: 'Yönetim'
     },
     hero: {
       title: 'Turançiftçi Law Firm',
       description:
-        'Istanbul merkezli ve Madrid temas ofisli yapimizla vergi hukuku, sirketler hukuku ve yabancilar hukukunda stratejik, uluslararasi odakli hukuki danismanlik sunuyoruz.',
-      primaryCta: 'Bize Ulasin',
-      secondaryCta: 'Hizmet Alanlari'
+        'İstanbul merkezli ve Madrid temas ofisli yapımızla vergi hukuku, şirketler hukuku ve yabancılar hukukunda stratejik, uluslararası odaklı hukuki danışmanlık sunuyoruz.',
+      primaryCta: 'Bize Ulaşın',
+      secondaryCta: 'Hizmet Alanları'
     },
     trustPoints: [
-      'Vergi hukuku odakli derin tecrube',
-      'Yabanci sirketler icin Ingilizce/Spanish erisilebilirlik',
-      'Istanbul ve Madrid baglantili uluslararasi bakis'
+      'Vergi hukuku odaklı derin tecrübe',
+      'Yabancı şirketler için İngilizce/Spanish erişilebilirlik',
+      'İstanbul ve Madrid bağlantılı uluslararası bakış'
     ],
     practices: {
       'tax-law': {
         title: 'Vergi Hukuku',
-        subtitle: 'Uygulama odakli vergi stratejisi ve uyum',
+        subtitle: 'Uygulama odaklı vergi stratejisi ve uyum',
         summary:
-          'Vergi incelemeleri, uzlasma surecleri, vergi ihtilaflari ve sirket ici vergi risk haritalari konularinda sonuca odakli temsil sunuyoruz.',
+          'Vergi incelemeleri, uzlaşma süreçleri, vergi ihtilafları ve şirket içi vergi risk haritaları konularında sonuca odaklı temsil sunuyoruz.',
         bullets: [
-          'Vergi inceleme sureclerinde hazirlik ve temsil',
-          'Tarhiyat, ceza ve idari basvurularda hukuki strateji',
-          'Transfer fiyatlandirmasi ve uluslararasi vergi risk analizi',
-          'Dava ve alternatif uyusmazlik cozum surecleri'
+          'Vergi inceleme süreçlerinde hazırlık ve temsil',
+          'Tarhiyat, ceza ve idari başvurularda hukuki strateji',
+          'Transfer fiyatlandırması ve uluslararası vergi risk analizi',
+          'Dava ve alternatif uyuşmazlık çözüm süreçleri'
         ],
-        cta: 'Vergi hukuku konusunda goruselim'
+        cta: 'Vergi hukuku konusunda görüşelim'
       },
       'corporate-law': {
-        title: 'Sirketler Hukuku',
-        subtitle: 'Yerel ve yabanci yatirimcilar icin hukuki altyapi',
+        title: 'Şirketler Hukuku',
+        subtitle: 'Yerel ve yabancı yatırımcılar için hukuki altyapı',
         summary:
-          'Sirket kuruluslari, pay devri, yonetim yapisi, ticari sozlesmeler ve kurumsal yonetisim sureclerinde uc dilde erisilebilir danismanlik sagliyoruz.',
+          'Şirket kuruluşları, pay devri, yönetim yapısı, ticari sözleşmeler ve kurumsal yönetişim süreçlerinde üç dilde erişilebilir danışmanlık sağlıyoruz.',
         bullets: [
-          'Sirket kurulus, yeniden yapilanma ve birlesme surecleri',
-          'Pay sahipleri sozlesmeleri ve yonetim hakki tasarimi',
-          'Yabanci sirketlerin Turkiye pazarina giris modellemesi',
-          'Ticari sozlesmelerin risk odakli hazirlanmasi'
+          'Şirket kuruluş, yeniden yapılanma ve birleşme süreçleri',
+          'Pay sahipleri sözleşmeleri ve yönetim hakkı tasarımı',
+          'Yabancı şirketlerin Türkiye pazarına giriş modellemesi',
+          'Ticari sözleşmelerin risk odaklı hazırlanması'
         ],
-        cta: 'Sirketler hukuku destegi alin'
+        cta: 'Şirketler hukuku desteği alın'
       },
       'immigration-law': {
-        title: 'Yabancilar Hukuku',
-        subtitle: 'Oturum ve calisma izni sureclerinde pratik cozum',
+        title: 'Yabancılar Hukuku',
+        subtitle: 'Oturum ve çalışma izni süreçlerinde pratik çözüm',
         summary:
-          'Yabanci gercek kisiler ve sirket yoneticileri icin oturum izni, calisma izni, vatandaslik ve ilgili idari sureclerde etkin hukuki takip sagliyoruz.',
+          'Yabancı gerçek kişiler ve şirket yöneticileri için oturum izni, çalışma izni, vatandaşlık ve ilgili idari süreçlerde etkin hukuki takip sağlıyoruz.',
         bullets: [
-          'Kisa ve uzun donem oturum izni basvurulari',
-          'Calisma izni surecleri ve itiraz mekanizmalari',
-          'Vatandaslik basvurulari ve hukuki uygunluk degerlendirmesi',
-          'Goc idaresi ve ilgili kurum yazismalarinin yonetimi'
+          'Kısa ve uzun dönem oturum izni başvuruları',
+          'Çalışma izni süreçleri ve itiraz mekanizmaları',
+          'Vatandaşlık başvuruları ve hukuki uygunluk değerlendirmesi',
+          'Göç idaresi ve ilgili kurum yazışmalarının yönetimi'
         ],
-        cta: 'Yabancilar hukuku icin iletisime gecin'
+        cta: 'Yabancılar hukuku için iletişime geçin'
       }
     },
     about: {
-      title: 'Hakkimizda',
-      lead: 'Turançiftçi Law Firm, is dunyasinin hizli karar alma ihtiyacina uygun, teknik ve uluslararasi perspektife sahip hukuk hizmeti sunar.',
+      title: 'Hakkımızda',
+      lead: 'Turançiftçi Law Firm, iş dünyasının hızlı karar alma ihtiyacına uygun, teknik ve uluslararası perspektife sahip hukuk hizmeti sunar.',
       paragraphs: [
-        'Buro yapimiz, vergi hukuku ve ticari hayatin kesistigi alanlarda riskleri erken asamada tespit etmeye odaklanir. Hukuki cozumleri sadece mevzuat temelli degil, ayni zamanda operasyonel gerceklige uygun sekilde kurgulariz.',
-        'Istanbul merkezli calisma modelimize Madrid temas noktamizi ekleyerek uluslararasi musteri iletisimi acisindan erisilebilirligi artiriyoruz. Turkce, Ingilizce ve Ispanyolca iletisime uygun surec yonetimi sagliyoruz.',
-        'Bu metin ilk faz taslagidir ve sizin hukuki revizyonlarinizla son hale getirilecektir.'
+        'Büro yapımız, vergi hukuku ve ticari hayatın kesiştiği alanlarda riskleri erken aşamada tespit etmeye odaklanır. Hukuki çözümleri sadece mevzuat temelli değil, aynı zamanda operasyonel gerçekliğe uygun şekilde kurgularız.',
+        'İstanbul merkezli çalışma modelimize Madrid temas noktamızı ekleyerek uluslararası müşteri iletişimi açısından erişilebilirliği artırıyoruz. Türkçe, İngilizce ve İspanyolca iletişime uygun süreç yönetimi sağlıyoruz.',
+        'Bu metin ilk faz taslağıdır ve sizin hukuki revizyonlarınızla son hale getirilecektir.'
       ]
     },
     contact: {
-      title: 'Bize Yazin',
-      subtitle: 'Sorununuzu kisaca iletin, sizinle en uygun yol haritasi icin iletisime gecelim.',
+      title: 'Bize Yazın',
+      subtitle: 'Sorununuzu kısaca iletin, sizinle en uygun yol haritası için iletişime geçelim.',
       form: {
         fullName: 'Ad Soyad',
         email: 'E-posta',
         phone: 'Telefon',
         preferredLanguage: 'Tercih Edilen Dil',
         subject: 'Konu',
-        message: 'Mesajiniz',
-        consent: 'KVKK/Gizlilik metinlerini okudum ve iletisim amacli veri islenmesini kabul ediyorum.',
-        send: 'Mesaji Gonder',
-        success: 'Mesajiniz alindi. En kisa surede donus yapacagiz.',
-        error: 'Mesaj gonderilemedi. Lutfen tekrar deneyin.'
+        message: 'Mesajınız',
+        consent: 'KVKK/Gizlilik metinlerini okudum ve iletişim amaçlı veri işlenmesini kabul ediyorum.',
+        send: 'Mesajı Gönder',
+        success: 'Mesajınız alındı. En kısa sürede dönüş yapacağız.',
+        error: 'Mesaj gönderilemedi. Lütfen tekrar deneyin.'
       }
     },
     legal: {
-      kvkkTitle: 'KVKK Aydinlatma Metni (Taslak)',
+      kvkkTitle: 'KVKK Aydınlatma Metni (Taslak)',
       kvkkBody:
-        'Bu sayfa prototip asamasinda olusturulmus taslak metindir. Veri sorumlusu, isleme amaci, hukuki sebep, aktarim ve basvuru haklari nihai yayinda avukatlik burosunun politikalarina gore guncellenecektir.',
+        'Bu sayfa prototip aşamasında oluşturulmuş taslak metindir. Veri sorumlusu, işleme amacı, hukuki sebep, aktarım ve başvuru hakları nihai yayında avukatlık bürosunun politikalarına göre güncellenecektir.',
       privacyTitle: 'Privacy Notice (Draft)',
       privacyBody:
         'This draft privacy notice explains what personal data is collected through the website contact form and how it is used for legal service communication only.',
@@ -189,7 +189,7 @@ export const SITE_CONTENT: Record<Lang, SiteContent> = {
       siteName: 'Turançiftçi Law Firm',
       defaultTitle: 'Turançiftçi Law Firm | Istanbul & Madrid',
       defaultDescription:
-        'Vergi hukuku, sirketler hukuku ve yabancilar hukuku alanlarinda Istanbul merkezli, Madrid temas ofisli hukuki danismanlik.'
+        'Vergi hukuku, şirketler hukuku ve yabancılar hukuku alanlarında İstanbul merkezli, Madrid temas ofisli hukuki danışmanlık.'
     }
   },
   en: {
@@ -417,6 +417,9 @@ export function isLang(value: string): value is Lang {
 export const PRACTICE_ORDER: PracticeSlug[] = ['tax-law', 'corporate-law', 'immigration-law'];
 
 export function buildLangPath(lang: Lang, path = ''): string {
-  const normalized = path.startsWith('/') ? path : `/${path}`;
-  return `/${lang}${normalized === '/' ? '' : normalized}`;
+  const withSlash = path.startsWith('/') ? path : `/${path}`;
+  const [pathnameWithPossibleLang, hashPart = ''] = withSlash.split('#');
+  const normalizedPathname = pathnameWithPossibleLang.replace(/^\/(tr|en|es)(?=\/|$)/, '') || '/';
+  const base = `/${lang}${normalizedPathname === '/' ? '' : normalizedPathname}`;
+  return hashPart ? `${base}#${hashPart}` : base;
 }

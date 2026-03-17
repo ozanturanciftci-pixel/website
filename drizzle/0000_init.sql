@@ -28,3 +28,12 @@ CREATE TABLE IF NOT EXISTS admin_sessions (
   expires_at INTEGER NOT NULL,
   created_at INTEGER NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS newsletter_subscribers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  full_name TEXT NOT NULL,
+  email TEXT NOT NULL UNIQUE,
+  consent INTEGER NOT NULL DEFAULT 1,
+  source TEXT NOT NULL DEFAULT 'website',
+  created_at INTEGER NOT NULL
+);

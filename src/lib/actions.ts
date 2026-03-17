@@ -3,6 +3,7 @@ import { db, schema } from '@/lib/db';
 import {
   AdminLoginSchema,
   ContactFormInputSchema,
+  NewsletterInputSchema,
   UpdateStatusSchema,
   type ContactFormInput
 } from '@/lib/validation';
@@ -98,4 +99,35 @@ export async function listMessages(status?: string) {
     .from(schema.contactMessages)
     .where(status ? eq(schema.contactMessages.status, status as any) : undefined)
     .orderBy(desc(schema.contactMessages.createdAt));
+}
+
+export async function subscribeNewsletter(input: {
+  fullName: string;
+  email: string;
+  consent: boolean;
+  source?: string;
+}) {
+  const parsed = NewsletterInputSchema.safeParse(input);
+  if (!parsed.success) {
+    return { ok: false as const, message: 'Validation failed' };
+  }
+
+  const exists = await db
+    .select({ id: schema.newsletterSubscribers.id })
+    .from(schema.newsletterSubscribers)
+    .where(eq(schema.newsletterSubscribers.email, parsed.data.email))
+    .limit(1);
+
+  if (exists[0]) {
+    return { ok: true as const, message: 'Bu e-posta zaten bultene kayitli.' };
+  }
+
+  await db.insert(schema.newsletterSubscribers).values({
+    fullName: parsed.data.fullName,
+    email: parsed.data.email,
+    consent: 1,
+    source: parsed.data.source
+  });
+
+  return { ok: true as const, message: 'Bülten kaydınız alındı.' };
 }

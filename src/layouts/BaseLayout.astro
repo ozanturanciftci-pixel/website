@@ -16,6 +16,7 @@ type Props = {
 
 const { lang, title, description, path = '', noIndex = false, structuredData } = Astro.props;
 const content = SITE_CONTENT[lang];
+const isHome = path === '/' || path === '';
 const pageTitle = title ? `${title} | ${content.seo.siteName}` : content.seo.defaultTitle;
 const pageDescription = description ?? content.seo.defaultDescription;
 const siteUrl = Astro.site?.toString() ?? process.env.PUBLIC_SITE_URL ?? 'http://localhost:4321';
@@ -53,9 +54,9 @@ const alternates = LANGS.map((entry) => ({ lang: entry, href: new URL(buildLangP
   </head>
   <body>
     <Header lang={lang} path={path} />
-    <main class="page-enter pb-20">
+    <main class={`page-enter ${isHome ? 'pb-0' : 'pb-20'}`}>
       <slot />
     </main>
-    <Footer lang={lang} />
+    {!isHome && <Footer lang={lang} path={path} />}
   </body>
 </html>
