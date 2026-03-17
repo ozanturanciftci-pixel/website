@@ -124,12 +124,10 @@ const sectionHref = (section: string) => (isHome ? `#${section}` : buildLangPath
         link.addEventListener('click', (event) => {
           const href = link.getAttribute('href');
           if (!href) return;
-          const hash = window.location.hash || '';
-          if (hash) {
-            event.preventDefault();
-            const base = href.split('#')[0];
-            window.location.href = `${base}${hash}`;
-          }
+          // Always open selected language from hero top; do not carry current section hash.
+          event.preventDefault();
+          const base = href.split('#')[0];
+          window.location.href = base;
         });
       });
     };
