@@ -435,10 +435,20 @@ const copy = uiCopy[lang];
     let heroCollapsed = false;
     let snapInProgress = false;
     let snapTimer = 0;
+    let lastScrollY = window.scrollY;
+    let lastScrollDir = 'down';
     const applyHeroCollapsed = (next) => {
       heroCollapsed = next;
       if (heroStage) heroStage.classList.toggle('hero-stage-collapsed', heroCollapsed);
       if (heroCopyBlock) heroCopyBlock.classList.toggle('hero-copy-hidden', heroCollapsed);
+      // Reduce runtime load after leaving hero viewport.
+      if (heroVideo && heroVideo instanceof HTMLVideoElement) {
+        if (heroCollapsed) {
+          heroVideo.pause();
+        } else {
+          heroVideo.play().catch(() => {});
+        }
+      }
     };
     const observedSections = [...document.querySelectorAll('[data-nav-section]')];
     if (observedSections.length) {
@@ -460,8 +470,8 @@ const copy = uiCopy[lang];
         // Only resolve when user is in the in-between area.
         if (y <= 14 || y >= aboutTop - 8) return;
 
-        const midpoint = aboutTop * 0.5;
-        const target = y < midpoint ? 0 : Math.max(0, aboutTop);
+        // Follow user's last scroll direction to avoid bounce-back feeling.
+        const target = lastScrollDir === 'down' ? Math.max(0, aboutTop) : 0;
         snapInProgress = true;
         if (target > 0) {
           applyHeroCollapsed(true);
@@ -480,6 +490,10 @@ const copy = uiCopy[lang];
       const updateStageOnScroll = () => {
         const y = window.scrollY;
         const hasSectionHash = !!(window.location.hash && window.location.hash.length > 1);
+        if (Math.abs(y - lastScrollY) > 1) {
+          lastScrollDir = y > lastScrollY ? 'down' : 'up';
+          lastScrollY = y;
+        }
 
         // If user is navigating sections, keep hero collapsed to prevent jump/flicker.
         if (hasSectionHash && y > 10) {
