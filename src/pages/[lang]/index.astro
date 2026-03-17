@@ -433,8 +433,8 @@ const copy = uiCopy[lang];
       });
     }
     let heroCollapsed = false;
-    let lastY = window.scrollY;
-    let snapLock = false;
+    let snapInProgress = false;
+    let snapTimer = 0;
     const applyHeroCollapsed = (next) => {
       heroCollapsed = next;
       if (heroStage) heroStage.classList.toggle('hero-stage-collapsed', heroCollapsed);
@@ -450,11 +450,36 @@ const copy = uiCopy[lang];
         return aboutSection.getBoundingClientRect().top + window.scrollY - (headerOffset + 12);
       };
 
+      const snapToNearestSection = () => {
+        if (!aboutSection || snapInProgress) return;
+        if (window.location.hash && window.location.hash.length > 1) return;
+        const y = window.scrollY;
+        const aboutTop = getAboutTop();
+        if (!Number.isFinite(aboutTop) || aboutTop <= 0) return;
+
+        // Only resolve when user is in the in-between area.
+        if (y <= 14 || y >= aboutTop - 8) return;
+
+        const midpoint = aboutTop * 0.5;
+        const target = y < midpoint ? 0 : Math.max(0, aboutTop);
+        snapInProgress = true;
+        if (target > 0) {
+          applyHeroCollapsed(true);
+        }
+        window.scrollTo({ top: target, behavior: 'smooth' });
+        window.setTimeout(() => {
+          snapInProgress = false;
+        }, 420);
+      };
+
+      const queueSnapResolve = () => {
+        window.clearTimeout(snapTimer);
+        snapTimer = window.setTimeout(snapToNearestSection, 120);
+      };
+
       const updateStageOnScroll = () => {
         const y = window.scrollY;
         const hasSectionHash = !!(window.location.hash && window.location.hash.length > 1);
-        const aboutTop = getAboutTop();
-        const scrollingDown = y > lastY + 1;
 
         // If user is navigating sections, keep hero collapsed to prevent jump/flicker.
         if (hasSectionHash && y > 10) {
@@ -468,20 +493,10 @@ const copy = uiCopy[lang];
           }
         }
 
-        // Gentle snap to About section to avoid lingering in the in-between transition zone.
-        if (!hasSectionHash && aboutSection && !snapLock && scrollingDown && y > 40 && y < aboutTop - 24) {
-          snapLock = true;
-          applyHeroCollapsed(true);
-          window.scrollTo({ top: Math.max(0, aboutTop), behavior: 'smooth' });
-          window.setTimeout(() => {
-            snapLock = false;
-          }, 620);
+        // Resolve "in-between" hero state only after scrolling pauses.
+        if (!hasSectionHash) {
+          queueSnapResolve();
         }
-
-        if (y < 24) {
-          snapLock = false;
-        }
-        lastY = y;
       };
 
       updateStageOnScroll();
