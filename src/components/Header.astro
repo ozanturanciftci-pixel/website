@@ -31,7 +31,7 @@ const sectionHref = (section: string) => (isHome ? `#${section}` : buildLangPath
       <a id="tab-contact" href={sectionHref('contact')} class="nav-tab">{t.nav.contact}</a>
     </nav>
 
-    <div class="ml-auto hidden items-center gap-2 md:flex header-langs">
+    <div class="ml-auto flex items-center gap-1.5 md:gap-2 header-langs">
       {
         LANGS.map((item) => {
           const flag = item === 'tr' ? '🇹🇷' : item === 'en' ? '🇬🇧' : '🇪🇸';
