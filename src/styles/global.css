@@ -49,6 +49,19 @@ body {
   background: #efe4d3;
 }
 
+html.home-scroll-snap {
+  scroll-behavior: smooth;
+}
+
+html.home-scroll-snap body {
+  scroll-snap-type: y mandatory;
+}
+
+html.home-scroll-snap .snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 a {
   color: inherit;
 }
@@ -75,7 +88,7 @@ h4 {
 .stage-image {
   opacity: 0;
   transform: scale(1.03);
-  transition: opacity 480ms ease, transform 820ms ease, object-position 420ms ease;
+  transition: opacity 420ms ease, transform 760ms ease, object-position 300ms ease;
 }
 
 .stage-image.active {
@@ -84,22 +97,12 @@ h4 {
 }
 
 #hero-stage {
-  transition: height 420ms ease, min-height 420ms ease;
   border-bottom: 1px solid rgba(226, 210, 184, 0.32);
-}
-
-#hero-stage.hero-stage-collapsed {
-  height: 83px;
-  min-height: 83px;
-}
-
-#hero-stage.hero-stage-collapsed .stage-image {
-  object-position: center 39% !important;
 }
 
 #hero-copy,
 #hero-mark {
-  transition: opacity 260ms ease, transform 260ms ease;
+  transition: opacity 360ms ease, transform 360ms ease;
 }
 
 .hero-copy-shell {
@@ -116,10 +119,49 @@ h4 {
   pointer-events: none;
 }
 
+.hero-ribbon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 12;
+  height: 92px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 260ms ease, transform 260ms ease;
+  border-bottom: 1px solid rgba(226, 210, 184, 0.32);
+}
+
+.hero-ribbon-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-ribbon-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 39%;
+  filter: saturate(0.92) contrast(0.95);
+}
+
+.hero-ribbon-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(9, 14, 24, 0.36) 0%,
+    rgba(9, 14, 24, 0.52) 100%
+  );
+}
+
 @media (min-width: 768px) {
-  #hero-stage.hero-stage-collapsed {
-    height: 98px;
-    min-height: 98px;
+  .hero-ribbon {
+    height: 104px;
   }
 }
 
@@ -192,7 +234,7 @@ h4 {
 }
 
 .header-home .brand-name-image {
-  filter: brightness(0) saturate(100%) invert(100%);
+  filter: brightness(0) saturate(100%) invert(95%) sepia(11%) saturate(467%) hue-rotate(334deg) brightness(104%) contrast(94%);
 }
 
 .header-home .brand-t-image {
@@ -215,7 +257,7 @@ h4 {
 }
 
 .header-home .header-langs a {
-  font-size: 0.96rem;
+  font-size: 0.9rem;
   letter-spacing: 0.01em;
 }
 
@@ -311,7 +353,7 @@ h4 {
 }
 
 .header-solid .header-langs a {
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   letter-spacing: 0.01em;
 }
 

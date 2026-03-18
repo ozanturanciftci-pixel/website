@@ -160,7 +160,21 @@ const copy = uiCopy[lang];
 
 <BaseLayout lang={lang} path="/" structuredData={structuredData}>
   <div class="relative bg-[#efe4d3]">
-    <section id="hero-stage" class="sticky top-0 z-30 h-[100svh] min-h-[620px]">
+    <div id="hero-ribbon" class="hero-ribbon" aria-hidden="true">
+      <video
+        id="hero-ribbon-video"
+        class="hero-ribbon-video"
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      >
+        <source src="/assets/hero-video.mp4#t=8" type="video/mp4" />
+      </video>
+      <div class="hero-ribbon-overlay"></div>
+    </div>
+
+    <section id="hero-stage" class="snap-section relative z-30 h-[100svh] min-h-[620px]">
       <div class="relative h-full overflow-hidden">
         <video
           id="hero-video"
@@ -197,8 +211,8 @@ const copy = uiCopy[lang];
       </div>
     </section>
 
-    <div class="relative z-10 border-t border-[#d8d2c8] pt-10 md:pt-14">
-      <section id="about" data-nav-section class="relative min-h-[88vh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] py-16 md:py-20">
+    <div class="relative z-10 border-t border-[#d8d2c8] pt-0">
+      <section id="about" data-nav-section class="snap-section relative min-h-[100svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] py-10 md:py-14">
         <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(240,231,217,0.90),rgba(240,231,217,0.97))]"></div>
 
         <div class="section-wrap relative z-10">
@@ -219,7 +233,7 @@ const copy = uiCopy[lang];
         </div>
       </section>
 
-      <section id="practices" data-nav-section class="section-divider relative min-h-[88vh] scroll-mt-48 overflow-hidden bg-[#e1e1dc] py-14">
+      <section id="practices" data-nav-section class="snap-section section-divider relative min-h-[100svh] scroll-mt-48 overflow-hidden bg-[#e1e1dc] py-14">
         <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(225,225,220,0.9),rgba(225,225,220,0.97))]"></div>
 
         <div class="section-wrap relative z-10">
@@ -267,7 +281,7 @@ const copy = uiCopy[lang];
         </div>
       </section>
 
-      <section id="contact" data-nav-section class="section-divider relative min-h-[78vh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] py-16 text-[#12161f]">
+      <section id="contact" data-nav-section class="snap-section section-divider relative min-h-[100svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] py-16 text-[#12161f]">
         <div class="section-wrap relative z-10">
           <div class="section-reveal">
             <h3 class="text-center text-4xl leading-none text-[#12161f] md:text-5xl">{copy.contactTitle}</h3>
@@ -404,14 +418,47 @@ const copy = uiCopy[lang];
     );
     reveals.forEach((el) => revealObserver.observe(el));
 
-    const heroStage = document.getElementById('hero-stage');
     const heroCopyBlock = document.getElementById('hero-copy');
+    const heroRibbon = document.getElementById('hero-ribbon');
+    const heroStage = document.getElementById('hero-stage');
+    const headerEl = document.getElementById('site-header');
+    const headerNavShell = document.getElementById('header-nav-shell');
     const heroVideo = document.getElementById('hero-video');
+    const heroRibbonVideo = document.getElementById('hero-ribbon-video');
+    const RIBBON_START_TIME = 8;
+    let ribbonAutoStarted = false;
+
+    const startRibbonPlayback = () => {
+      if (!(heroRibbonVideo && heroRibbonVideo instanceof HTMLVideoElement)) return;
+      if (ribbonAutoStarted) return;
+      ribbonAutoStarted = true;
+      try {
+        heroRibbonVideo.currentTime = RIBBON_START_TIME;
+      } catch {}
+      heroRibbonVideo.play().catch(() => {});
+    };
+
+    const getPanelBottom = () => {
+      if (headerNavShell) {
+        const navStyle = window.getComputedStyle(headerNavShell);
+        if (navStyle.display !== 'none') {
+          return headerNavShell.getBoundingClientRect().bottom;
+        }
+      }
+      return headerEl?.getBoundingClientRect().bottom ?? 96;
+    };
+
+    const shouldShowRibbon = () => {
+      if (!heroStage) return window.scrollY > 120;
+      const heroBottom = heroStage.getBoundingClientRect().bottom;
+      return heroBottom <= getPanelBottom() + 1;
+    };
+
     if (heroVideo && heroVideo instanceof HTMLVideoElement) {
       let forcedOnce = false;
       const seekToEightSeconds = () => {
         try {
-          heroVideo.currentTime = 8;
+          heroVideo.currentTime = RIBBON_START_TIME;
         } catch {}
       };
       if (heroVideo.readyState >= 1) {
@@ -431,101 +478,33 @@ const copy = uiCopy[lang];
         forcedOnce = true;
       });
     }
-    let heroCollapsed = false;
-    let snapInProgress = false;
-    let snapTimer = 0;
-    let lastY = window.scrollY;
-    let sectionLockUntil = 0;
-    const applyHeroCollapsed = (next) => {
-      heroCollapsed = next;
-      if (heroStage) heroStage.classList.toggle('hero-stage-collapsed', heroCollapsed);
-      if (heroCopyBlock) heroCopyBlock.classList.toggle('hero-copy-hidden', heroCollapsed);
-    };
-    const observedSections = [...document.querySelectorAll('[data-nav-section]')];
-    if (observedSections.length) {
-      const aboutSection = document.getElementById('about');
-      const getAboutTop = () => {
-        if (!aboutSection) return Infinity;
-        const headerEl = document.getElementById('site-header');
-        const headerOffset = headerEl?.offsetHeight ?? 96;
-        return aboutSection.getBoundingClientRect().top + window.scrollY - (headerOffset + 12);
+    if (heroRibbonVideo && heroRibbonVideo instanceof HTMLVideoElement) {
+      const seekRibbon = () => {
+        try {
+          heroRibbonVideo.currentTime = RIBBON_START_TIME;
+        } catch {}
       };
+      if (heroRibbonVideo.readyState >= 1) {
+        seekRibbon();
+      } else {
+        heroRibbonVideo.addEventListener('loadedmetadata', seekRibbon, { once: true });
+      }
+      heroRibbonVideo.pause();
+    }
+    if (heroCopyBlock) {
+      const syncHeroCopyFade = () => {
+        const hideHeroCopy = window.scrollY > 24;
+        const showRibbon = shouldShowRibbon();
+        heroCopyBlock.classList.toggle('hero-copy-hidden', hideHeroCopy);
 
-      const snapToNearestSection = () => {
-        if (!aboutSection || snapInProgress) return;
-        if (window.location.hash && window.location.hash.length > 1) return;
-        const y = window.scrollY;
-        const aboutTop = getAboutTop();
-        if (!Number.isFinite(aboutTop) || aboutTop <= 0) return;
-
-        // Only resolve when user is in the in-between area.
-        if (y <= 14 || y >= aboutTop - 8) return;
-
-        const midpoint = aboutTop * 0.5;
-        const target = y < midpoint ? 0 : Math.max(0, aboutTop);
-        snapInProgress = true;
-        if (target > 0) {
-          applyHeroCollapsed(true);
+        if (heroRibbon) {
+          heroRibbon.classList.toggle('hero-ribbon-visible', showRibbon);
         }
-        window.scrollTo({ top: target, behavior: 'smooth' });
-        window.setTimeout(() => {
-          snapInProgress = false;
-        }, 420);
+        if (showRibbon) startRibbonPlayback();
       };
-
-      const queueSnapResolve = () => {
-        window.clearTimeout(snapTimer);
-        snapTimer = window.setTimeout(snapToNearestSection, 120);
-      };
-
-      const updateStageOnScroll = () => {
-        const y = window.scrollY;
-        const hasSectionHash = !!(window.location.hash && window.location.hash.length > 1);
-        const now = Date.now();
-        const aboutTop = getAboutTop();
-
-        // On first descent from hero, hard-stop at About start to prevent skipping.
-        if (
-          !hasSectionHash &&
-          now >= sectionLockUntil &&
-          Number.isFinite(aboutTop) &&
-          aboutTop > 0 &&
-          lastY < aboutTop - 24 &&
-          y >= aboutTop - 24 &&
-          y < aboutTop + 260
-        ) {
-          snapInProgress = true;
-          sectionLockUntil = now + 320;
-          applyHeroCollapsed(true);
-          window.scrollTo({ top: Math.max(0, aboutTop), behavior: 'auto' });
-          window.setTimeout(() => {
-            snapInProgress = false;
-          }, 260);
-          lastY = Math.max(0, aboutTop);
-          return;
-        }
-
-        // If user is navigating sections, keep hero collapsed to prevent jump/flicker.
-        if (hasSectionHash && y > 10) {
-          applyHeroCollapsed(true);
-        } else {
-          // Collapse quickly when user starts leaving hero; expand only at near-top.
-          if (!heroCollapsed && y > 90) {
-            applyHeroCollapsed(true);
-          } else if (heroCollapsed && y < 20) {
-            applyHeroCollapsed(false);
-          }
-        }
-
-        // Resolve "in-between" hero state only after scrolling pauses.
-        if (!hasSectionHash) {
-          queueSnapResolve();
-        }
-        lastY = y;
-      };
-
-      updateStageOnScroll();
-      window.addEventListener('scroll', updateStageOnScroll, { passive: true });
+      syncHeroCopyFade();
+      window.addEventListener('scroll', syncHeroCopyFade, { passive: true });
+      window.addEventListener('resize', syncHeroCopyFade);
     }
 
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -535,10 +514,7 @@ const copy = uiCopy[lang];
         const target = document.querySelector(href);
         if (!target) return;
         event.preventDefault();
-        if (href !== '#') {
-          applyHeroCollapsed(true);
-          window.history.replaceState({}, '', href);
-        }
+        if (href !== '#') window.history.replaceState({}, '', href);
         const headerEl = document.getElementById('site-header');
         const headerOffset = headerEl?.offsetHeight ?? 96;
         const top = target.getBoundingClientRect().top + window.scrollY - (headerOffset + 12);
