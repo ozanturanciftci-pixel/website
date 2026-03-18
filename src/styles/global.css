@@ -7,18 +7,34 @@
 }
 
 @font-face {
-  font-family: 'Gantari';
-  src: url('/assets/fonts/Gantari-VariableFont_wght.ttf') format('truetype');
+  font-family: 'PT Serif';
+  src: url('/assets/fonts/PTSerif-Regular.ttf') format('truetype');
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Gantari';
-  src: url('/assets/fonts/Gantari-Italic-VariableFont_wght.ttf') format('truetype');
+  font-family: 'PT Serif';
+  src: url('/assets/fonts/PTSerif-Italic.ttf') format('truetype');
   font-style: italic;
-  font-weight: 100 900;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  src: url('/assets/fonts/PTSerif-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  src: url('/assets/fonts/PTSerif-BoldItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 700;
   font-display: swap;
 }
 
@@ -44,7 +60,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  font-family: 'Gantari', 'Segoe UI', sans-serif;
+  font-family: 'PT Serif', Georgia, 'Times New Roman', serif;
   color: var(--text-primary);
   background: #efe4d3;
 }
@@ -210,7 +226,7 @@ h4 {
 }
 
 .header-home .nav-tab {
-  font-family: 'Gantari', 'Segoe UI', sans-serif;
+  font-family: 'PT Serif', Georgia, 'Times New Roman', serif;
   font-size: 1.12rem;
   letter-spacing: 0.01em;
   border-radius: 999px;
@@ -331,7 +347,7 @@ h4 {
 }
 
 .header-solid .nav-tab {
-  font-family: 'Gantari', 'Segoe UI', sans-serif;
+  font-family: 'PT Serif', Georgia, 'Times New Roman', serif;
   font-size: 1.06rem;
   letter-spacing: 0.01em;
   border-radius: 999px;
@@ -424,7 +440,6 @@ h4 {
 }
 
 .practice-list {
-  border-top: 1px solid rgba(147, 134, 113, 0.28);
   display: grid;
   gap: 1rem;
   padding-bottom: 0.25rem;
@@ -576,6 +591,137 @@ h4 {
   transform: translateY(-1px);
 }
 
+.newsletter-topbar {
+  display: grid;
+  grid-template-columns: auto 1px minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: center;
+  padding-inline: 0.35rem;
+}
+
+.newsletter-topbar-logo-wrap {
+  display: grid;
+  place-items: center;
+  align-self: center;
+}
+
+.newsletter-topbar-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.newsletter-topbar-logo-svg {
+  filter: brightness(0) saturate(100%) invert(96%) sepia(8%) saturate(349%) hue-rotate(333deg) brightness(103%) contrast(95%);
+}
+
+.newsletter-topbar-divider {
+  width: 1px;
+  height: 52px;
+  background: rgba(244, 247, 253, 0.38);
+  align-self: center;
+}
+
+.newsletter-topbar-divider-primary {
+  margin-left: 0.65rem;
+}
+
+.newsletter-topbar-copy {
+  min-width: 0;
+  margin-left: 0;
+  max-width: 360px;
+  align-self: center;
+}
+
+.newsletter-topbar-center {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  justify-content: center;
+  justify-self: stretch;
+  flex-wrap: nowrap;
+  padding-inline: 0.75rem;
+  align-self: center;
+}
+
+.newsletter-topbar-links {
+  display: grid;
+  gap: 0.4rem;
+  justify-self: end;
+  text-align: right;
+  align-self: center;
+}
+
+.newsletter-topbar-form {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) minmax(120px, 1fr) auto;
+  grid-template-areas:
+    "first last button"
+    "email email button";
+  gap: 0.35rem;
+  align-items: center;
+  justify-self: start;
+  margin-left: 0;
+  min-width: 0;
+  width: min(100%, 560px);
+  flex: 0 0 auto;
+}
+
+.newsletter-topbar-form input {
+  border: 1px solid rgba(244, 247, 253, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+  color: #f4f7fd;
+  border-radius: 999px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.92rem;
+  line-height: 1.2;
+  outline: none;
+  min-width: 0;
+}
+
+.newsletter-topbar-form input[name="firstName"] { grid-area: first; }
+.newsletter-topbar-form input[name="lastName"] { grid-area: last; }
+.newsletter-topbar-form input[name="email"] {
+  grid-area: email;
+  min-width: 0;
+  width: 100%;
+}
+
+.newsletter-topbar-form input::placeholder {
+  color: rgba(244, 247, 253, 0.76);
+}
+
+.newsletter-topbar-form button {
+  grid-area: button;
+  align-self: center;
+  border: 1px solid rgba(244, 247, 253, 0.72);
+  color: #f4f7fd;
+  background: transparent;
+  border-radius: 999px;
+  padding: 0.28rem 0.72rem;
+  font-size: 0.92rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.newsletter-topbar-form button:hover {
+  background: rgba(244, 247, 253, 0.16);
+}
+
+.newsletter-topbar-link {
+  color: #f4f7fd;
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.newsletter-topbar-linkedin {
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 .hero-contact-pill {
   display: inline-flex;
   align-items: center;
@@ -639,6 +785,55 @@ h4 {
     padding: 0.18rem 0.34rem;
     font-size: 0.66rem;
   }
+
+  .newsletter-topbar {
+    grid-template-columns: auto 1px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .newsletter-topbar-divider {
+    height: 42px;
+    margin-top: 2px;
+  }
+
+  .newsletter-topbar-links {
+    justify-self: start;
+    text-align: left;
+    margin-top: 0.35rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .newsletter-topbar {
+    grid-template-columns: auto 1px minmax(0, 1fr) 1px auto;
+    gap: 0.9rem;
+    align-items: center;
+  }
+
+  .newsletter-topbar-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    justify-self: stretch;
+    width: 100%;
+    padding-inline: 1rem;
+    align-self: center;
+  }
+
+  .newsletter-topbar-form {
+    grid-template-columns: minmax(130px, 1fr) minmax(130px, 1fr) auto;
+    width: min(100%, 600px);
+  }
+
+  .newsletter-topbar-divider-secondary {
+    margin-left: -0.65rem;
+  }
+}
+
+.newsletter-compact-form {
+  width: 100%;
+  max-width: 680px;
 }
 
 .newsletter-inline-form .newsletter-field span {
@@ -687,6 +882,10 @@ h4 {
 
 .about-wordmark {
   filter: brightness(0) saturate(100%) invert(20%) sepia(18%) saturate(713%) hue-rotate(184deg) brightness(93%) contrast(89%);
+}
+
+.pt-serif-copy {
+  font-family: 'PT Serif', Georgia, 'Times New Roman', serif;
 }
 
 @media (min-width: 768px) {
