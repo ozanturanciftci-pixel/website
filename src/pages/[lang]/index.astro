@@ -242,7 +242,7 @@ const copy = uiCopy[lang];
     </section>
 
     <div class="relative z-10 border-t border-[#d8d2c8] pt-0">
-      <section id="about" data-nav-section class="snap-section relative min-h-[100svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] pb-10 pt-4 md:pb-14 md:pt-8">
+      <section id="about" data-nav-section class="snap-section relative min-h-[100svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] pb-10 pt-24 md:pb-14 md:pt-8">
         <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(240,231,217,0.90),rgba(240,231,217,0.97))]"></div>
 
         <div class="section-wrap relative z-10">
@@ -264,6 +264,12 @@ const copy = uiCopy[lang];
               <div class="grid items-center gap-6 md:grid-cols-[minmax(0,0.88fr)_270px] md:gap-12">
                 <div class="max-w-[68ch] space-y-5 text-lg leading-9 text-[#4c5568]">
                   <h3 class="text-3xl leading-tight text-[#2b3447] md:text-4xl">{founderContentByLang[lang].title}</h3>
+                  <img
+                    src="/assets/ozan-profile.jpeg"
+                    alt="Av. Ozan Turançiftçi"
+                    class="h-[170px] w-[170px] rounded-full border border-[#c9c1b3] object-cover shadow-[0_10px_24px_rgba(35,43,58,0.12)] md:hidden"
+                    loading="lazy"
+                  />
                   {founderContentByLang[lang].paragraphs.map((paragraph) => (
                     <p class="text-justify">{paragraph}</p>
                   ))}
@@ -271,7 +277,7 @@ const copy = uiCopy[lang];
                 <img
                   src="/assets/ozan-profile.jpeg"
                   alt="Av. Ozan Turançiftçi"
-                  class="h-[195px] w-[195px] rounded-full border border-[#c9c1b3] object-cover shadow-[0_10px_24px_rgba(35,43,58,0.12)] md:h-[240px] md:w-[240px] md:justify-self-center"
+                  class="hidden h-[195px] w-[195px] rounded-full border border-[#c9c1b3] object-cover shadow-[0_10px_24px_rgba(35,43,58,0.12)] md:block md:h-[240px] md:w-[240px] md:justify-self-center"
                   loading="lazy"
                 />
               </div>
