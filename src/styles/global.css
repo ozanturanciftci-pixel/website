@@ -379,7 +379,7 @@ h4 {
 }
 
 .section-wrap {
-  @apply w-full px-5 md:px-9 xl:px-14;
+  @apply w-full px-4 md:px-7 xl:px-12;
 }
 
 .section-divider {

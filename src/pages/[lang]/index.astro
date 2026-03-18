@@ -245,7 +245,7 @@ const copy = uiCopy[lang];
       <section id="about" data-nav-section class="snap-section relative min-h-[100svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] pb-10 pt-16 md:pb-14 md:pt-8">
         <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(240,231,217,0.90),rgba(240,231,217,0.97))]"></div>
 
-        <div class="section-wrap relative z-10">
+        <div class="section-wrap relative z-10 md:px-9 xl:px-14">
           <div class="section-reveal">
             <div class="mt-2 grid items-center gap-5 md:mt-0 md:grid-cols-[minmax(320px,auto)_minmax(0,1fr)] md:gap-9">
               <img
@@ -291,8 +291,18 @@ const copy = uiCopy[lang];
 
         <div class="section-wrap relative z-10">
           <div class="mb-8 section-reveal">
-            <h2 class="text-center text-5xl leading-[0.95] text-[#2b3447] md:text-left md:text-6xl">{copy.practicesKicker}</h2>
-            <p class="mt-5 max-w-4xl text-justify text-lg leading-8 text-[#4c5568]">{copy.practicesLead}</p>
+            <div class="grid items-start gap-6 md:grid-cols-[420px_minmax(0,1fr)] md:gap-10">
+              <img
+                src="/assets/practice-intro.jpg"
+                alt={copy.practicesKicker}
+                class="mx-auto h-48 w-full max-w-[420px] rounded-2xl border border-[#ccc3b4] object-cover shadow-[0_8px_20px_rgba(37,45,61,0.1)] md:mx-0 md:h-[250px] md:max-w-[420px]"
+                loading="lazy"
+              />
+              <div>
+                <h2 class="text-center text-5xl leading-[0.95] text-[#2b3447] md:text-left md:text-6xl">{copy.practicesKicker}</h2>
+                <p class="mt-5 text-justify text-lg leading-8 text-[#4c5568]">{copy.practicesLead}</p>
+              </div>
+            </div>
           </div>
 
           <div class="practice-list section-reveal">
