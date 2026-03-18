@@ -242,7 +242,7 @@ const copy = uiCopy[lang];
     </section>
 
     <div class="relative z-10 border-t border-[#d8d2c8] pt-0">
-      <section id="about" data-nav-section class="snap-section relative min-h-[100svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] pb-10 pt-24 md:pb-14 md:pt-8">
+      <section id="about" data-nav-section class="snap-section relative min-h-[100svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] pb-10 pt-16 md:pb-14 md:pt-8">
         <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(240,231,217,0.90),rgba(240,231,217,0.97))]"></div>
 
         <div class="section-wrap relative z-10">
@@ -251,11 +251,11 @@ const copy = uiCopy[lang];
               <img
                 src={aboutLogoByLang[lang]}
                 alt="Turançiftçi"
-                class="h-14 w-auto md:h-24"
+                class="mx-auto h-14 w-auto md:mx-0 md:h-24"
                 transition:name="hero"
                 loading="lazy"
               />
-              <p class="text-justify text-lg leading-9 text-[#4c5568]">
+              <p class="text-center text-lg leading-9 text-[#4c5568] md:text-justify">
                 {aboutIntroByLang[lang]}
               </p>
             </div>
@@ -263,15 +263,15 @@ const copy = uiCopy[lang];
             <div class="mt-10 border-t border-[#d4ccbe] pt-8">
               <div class="grid items-center gap-6 md:grid-cols-[minmax(0,0.88fr)_270px] md:gap-12">
                 <div class="max-w-[68ch] space-y-5 text-lg leading-9 text-[#4c5568]">
-                  <h3 class="text-3xl leading-tight text-[#2b3447] md:text-4xl">{founderContentByLang[lang].title}</h3>
+                  <h3 class="text-center text-3xl leading-tight text-[#2b3447] md:text-left md:text-4xl">{founderContentByLang[lang].title}</h3>
                   <img
                     src="/assets/ozan-profile.jpeg"
                     alt="Av. Ozan Turançiftçi"
-                    class="h-[170px] w-[170px] rounded-full border border-[#c9c1b3] object-cover shadow-[0_10px_24px_rgba(35,43,58,0.12)] md:hidden"
+                    class="mx-auto h-[170px] w-[170px] rounded-full border border-[#c9c1b3] object-cover shadow-[0_10px_24px_rgba(35,43,58,0.12)] md:hidden"
                     loading="lazy"
                   />
                   {founderContentByLang[lang].paragraphs.map((paragraph) => (
-                    <p class="text-justify">{paragraph}</p>
+                    <p class="text-center md:text-justify">{paragraph}</p>
                   ))}
                 </div>
                 <img
@@ -291,13 +291,13 @@ const copy = uiCopy[lang];
 
         <div class="section-wrap relative z-10">
           <div class="mb-8 section-reveal">
-            <h2 class="text-5xl leading-[0.95] text-[#2b3447] md:text-6xl">{copy.practicesKicker}</h2>
-            <p class="mt-5 max-w-4xl text-justify text-lg leading-8 text-[#4c5568]">{copy.practicesLead}</p>
+            <h2 class="text-center text-5xl leading-[0.95] text-[#2b3447] md:text-left md:text-6xl">{copy.practicesKicker}</h2>
+            <p class="mt-5 max-w-4xl text-center text-lg leading-8 text-[#4c5568] md:text-justify">{copy.practicesLead}</p>
           </div>
 
           <div class="practice-list section-reveal">
             <div class="practice-list-head">
-              <p class="practice-list-head-title">
+              <p class="practice-list-head-title text-center md:text-left">
                 {copy.practicesHeadLine1}
               </p>
             </div>
@@ -339,15 +339,15 @@ const copy = uiCopy[lang];
       <section id="contact" data-nav-section class="snap-section section-divider relative min-h-[72svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] py-12 text-[#12161f]">
         <div class="section-wrap relative z-10">
           <div class="section-reveal">
-            <h3 class="text-5xl leading-[0.95] text-[#2b3447] md:text-6xl">{copy.contactTitle}</h3>
-            <p class="mt-3 max-w-3xl text-lg leading-8 text-[#4c5568]">
+            <h3 class="text-center text-5xl leading-[0.95] text-[#2b3447] md:text-left md:text-6xl">{copy.contactTitle}</h3>
+            <p class="mt-3 max-w-3xl text-center text-lg leading-8 text-[#4c5568] md:text-left">
               {copy.contactSubtitle}
             </p>
 
             <div class="mt-8 grid items-start gap-10 md:grid-cols-[1.35fr_1fr] lg:gap-16">
               <div class="md:pr-4">
-                <h4 class="text-3xl text-[#12161f] md:text-4xl">{copy.addressTitle}</h4>
-                <p class="mt-5 text-base leading-[1.7] text-[#1f2633] md:text-[1.02rem]">{OFFICE_INFO.istanbul.address}</p>
+                <h4 class="text-center text-3xl text-[#12161f] md:text-left md:text-4xl">{copy.addressTitle}</h4>
+                <p class="mt-5 text-center text-base leading-[1.7] text-[#1f2633] md:text-left md:text-[1.02rem]">{OFFICE_INFO.istanbul.address}</p>
                 <a href={istanbulMapOpenUrl} target="_blank" rel="noreferrer" class="mt-3 inline-block text-sm font-semibold text-[#2f3f62] underline underline-offset-4 hover:text-[#1e2a43]">
                   {copy.openMap} →
                 </a>
@@ -363,8 +363,8 @@ const copy = uiCopy[lang];
               </div>
 
               <div class="md:pl-4">
-                <h4 class="text-3xl text-[#12161f] md:text-4xl">{copy.otherContactTitle}</h4>
-                <div class="mt-5 space-y-3 text-base leading-[1.7] text-[#1f2633] md:text-[1.02rem]">
+                <h4 class="text-center text-3xl text-[#12161f] md:text-left md:text-4xl">{copy.otherContactTitle}</h4>
+                <div class="mt-5 space-y-3 text-center text-base leading-[1.7] text-[#1f2633] md:text-left md:text-[1.02rem]">
                   <a href={`tel:${OFFICE_INFO.phone}`} class="block border-b border-[#bfc4cd] pb-2 hover:text-[#000000]">{copy.phoneLabel}: {OFFICE_INFO.phone}</a>
                   <a href={`mailto:${OFFICE_INFO.email}`} class="block border-b border-[#bfc4cd] pb-2 hover:text-[#000000]">{copy.emailLabel}: {OFFICE_INFO.email}</a>
                   <a
