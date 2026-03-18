@@ -197,7 +197,7 @@ export const SITE_CONTENT: Record<Lang, SiteContent> = {
     nav: {
       home: 'Home',
       practiceAreas: 'Practice Areas',
-      about: 'About',
+      about: 'About Us',
       contact: 'Contact',
       kvkk: 'KVKK',
       privacy: 'Privacy',
@@ -305,7 +305,7 @@ export const SITE_CONTENT: Record<Lang, SiteContent> = {
     nav: {
       home: 'Inicio',
       practiceAreas: 'Areas de Practica',
-      about: 'Nosotros',
+      about: 'Sobre Nosotros',
       contact: 'Contacto',
       kvkk: 'KVKK',
       privacy: 'Privacidad',
