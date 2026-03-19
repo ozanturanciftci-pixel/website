@@ -329,7 +329,7 @@ const copy = uiCopy[lang];
         </div>
       </section>
 
-      <section id="contact" data-nav-section class="snap-section section-divider relative min-h-[64svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] pb-8 pt-12 text-[#12161f]">
+      <section id="contact" data-nav-section class="snap-section section-divider relative min-h-[66svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] pb-12 pt-12 text-[#12161f]">
         <div class="section-wrap relative z-10 md:px-12 lg:px-20">
           <div class="section-reveal">
             <h3 class="text-5xl leading-[0.95] text-[#2b3447] md:text-6xl">{copy.contactTitle}</h3>
@@ -338,7 +338,7 @@ const copy = uiCopy[lang];
             </p>
 
             <div class="mt-6">
-              <div class="mb-7 flex items-center justify-start gap-4">
+              <div class="mb-10 flex items-center justify-start gap-4">
                 <a
                   href={`mailto:${OFFICE_INFO.email}`}
                   class="inline-flex items-center gap-2 rounded-full border border-[#2b3447] px-4 py-2 text-[#2b3447] transition hover:bg-[#2b3447] hover:text-white"
@@ -607,7 +607,7 @@ const copy = uiCopy[lang];
         if (href !== '#') window.history.replaceState({}, '', href);
         const headerEl = document.getElementById('site-header');
         const headerOffset = headerEl?.offsetHeight ?? 96;
-        const extraLift = href === '#about' ? -12 : 0;
+        const extraLift = href === '#about' ? -12 : href === '#contact' ? 18 : 0;
         const top = target.getBoundingClientRect().top + window.scrollY - Math.max(0, headerOffset - extraLift);
         window.requestAnimationFrame(() => {
           window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
