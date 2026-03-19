@@ -203,7 +203,7 @@ const copy = uiCopy[lang];
       <div class="hero-ribbon-overlay"></div>
     </div>
 
-    <section id="hero-stage" class="snap-section relative z-30 h-[100svh] min-h-[100svh] md:h-[80svh] md:min-h-[560px]">
+    <section id="hero-stage" class="snap-section relative z-30 h-[94svh] min-h-[94svh] md:h-[76svh] md:min-h-[520px]">
       <div class="relative h-full overflow-hidden">
         <video
           id="hero-video"
@@ -329,7 +329,7 @@ const copy = uiCopy[lang];
         </div>
       </section>
 
-      <section id="contact" data-nav-section class="snap-section section-divider relative min-h-[66svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] pb-12 pt-12 text-[#12161f]">
+      <section id="contact" data-nav-section class="snap-section section-divider relative min-h-[70svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] pb-14 pt-12 text-[#12161f]">
         <div class="section-wrap relative z-10 md:px-12 lg:px-20">
           <div class="section-reveal">
             <h3 class="text-5xl leading-[0.95] text-[#2b3447] md:text-6xl">{copy.contactTitle}</h3>
@@ -337,8 +337,8 @@ const copy = uiCopy[lang];
               {copy.contactSubtitle}
             </p>
 
-            <div class="mt-6">
-              <div class="mb-10 flex items-center justify-start gap-4">
+            <div class="mt-8">
+              <div class="mb-8 flex items-center justify-start gap-4">
                 <a
                   href={`mailto:${OFFICE_INFO.email}`}
                   class="inline-flex items-center gap-2 rounded-full border border-[#2b3447] px-4 py-2 text-[#2b3447] transition hover:bg-[#2b3447] hover:text-white"
@@ -367,7 +367,7 @@ const copy = uiCopy[lang];
                   <img
                     src="/assets/contact-istanbul.jpg"
                     alt="Istanbul office"
-                    class="h-44 w-full rounded-2xl border border-[#c8c8c8] object-cover object-[center_22%] shadow-[0_8px_20px_rgba(0,0,0,0.05)] md:h-56"
+                    class="h-48 w-full rounded-2xl border border-[#c8c8c8] object-cover object-[center_22%] shadow-[0_8px_20px_rgba(0,0,0,0.05)] md:h-60"
                     loading="lazy"
                   />
                   <div>
@@ -381,7 +381,7 @@ const copy = uiCopy[lang];
                   <img
                     src="/assets/contact-madrid.jpg"
                     alt="Madrid office"
-                    class="h-44 w-full rounded-2xl border border-[#c8c8c8] object-cover object-top shadow-[0_8px_20px_rgba(0,0,0,0.05)] md:h-56"
+                    class="h-48 w-full rounded-2xl border border-[#c8c8c8] object-cover object-top shadow-[0_8px_20px_rgba(0,0,0,0.05)] md:h-60"
                     loading="lazy"
                   />
                   <div>
@@ -607,7 +607,7 @@ const copy = uiCopy[lang];
         if (href !== '#') window.history.replaceState({}, '', href);
         const headerEl = document.getElementById('site-header');
         const headerOffset = headerEl?.offsetHeight ?? 96;
-        const extraLift = href === '#about' ? -12 : href === '#contact' ? 18 : 0;
+        const extraLift = href === '#about' ? -12 : href === '#contact' ? 34 : 0;
         const top = target.getBoundingClientRect().top + window.scrollY - Math.max(0, headerOffset - extraLift);
         window.requestAnimationFrame(() => {
           window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
