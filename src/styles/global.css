@@ -637,7 +637,7 @@ h4 {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 2.25rem;
   justify-content: center;
   justify-self: stretch;
   flex-wrap: nowrap;
@@ -824,6 +824,11 @@ h4 {
   .newsletter-topbar-form {
     grid-template-columns: minmax(130px, 1fr) minmax(130px, 1fr) auto;
     width: min(100%, 600px);
+    margin-left: 1.1rem;
+  }
+
+  .newsletter-topbar-copy {
+    margin-left: -0.45rem;
   }
 
   .newsletter-topbar-divider-secondary {

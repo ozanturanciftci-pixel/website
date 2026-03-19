@@ -88,7 +88,7 @@ export const SITE_CONTENT: Record<Lang, SiteContent> = {
     localeName: 'Türkçe',
     nav: {
       home: 'Ana Sayfa',
-      practiceAreas: 'Faaliyet Alanları',
+      practiceAreas: 'Uzmanlık Alanlarımız',
       about: 'Hakkımızda',
       contact: 'İletişim',
       kvkk: 'KVKK',
