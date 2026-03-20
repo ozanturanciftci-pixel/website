@@ -159,8 +159,8 @@ const founderContentByLang: Record<Lang, { title: string; paragraphs: string[] }
   tr: {
     title: 'Av. Ozan Turançiftçi – Ortak',
     paragraphs: [
-      'Av. Ozan Turançiftçi, vergi ve hukuk alanında çok uluslu şirketlere yönelik danışmanlık deneyimine sahip bir avukattır. İstanbul Barosu’na kayıtlı olup, uluslararası vergi ve şirketler hukuku alanlarında uzmanlaşmıştır. Kariyeri boyunca PwC ve EY gibi dünyanın önde gelen danışmanlık firmalarında görev almış; doğrudan ve dolaylı vergiler, transfer fiyatlandırması, KDV ve gümrük uygulamaları gibi kompleks konularda çok uluslu müvekkillere danışmanlık sağlamıştır.',
-      'Vergi risklerinin analiz edilmesi, stratejik planlama fırsatlarının belirlenmesi ve uyuşmazlık süreçlerinin yönetilmesi konularında aktif rol almış; müvekkillerini idari ve yargısal süreçlerde temsil etmiştir. Madrid’de bulunan Universidad Carlos III de Madrid bünyesinde MBA eğitimini tamamlayan Turançiftçi, iş dünyası ile hukuku bir araya getiren bütüncül bir bakış açısına sahiptir. İngilizce, Türkçe, İspanyolca ve Fransızca dillerinde hizmet verebilmekte olup, kurucusu olduğu büroda teknik doğruluğu yüksek, ticari açıdan uygulanabilir ve müvekkil odaklı çözümler sunmayı temel ilke edinmiştir.'
+      'Av. Ozan Turançiftçi, vergi ve şirketler hukuku alanlarında, çok uluslu müvekkillere yönelik danışmanlık deneyimi bulunan bir avukattır. Kariyeri boyunca global ölçekte faaliyet gösteren lider danışmanlık firmalarında edindiği tecrübeyi, hukuki doğruluk ile ticari öngörüyü bir araya getiren bir yaklaşımla sunmaktadır.',
+      'Madrid’de tamamladığı MBA eğitimi ve çok dilli çalışma yetkinliği ile, müvekkillerine küresel ölçekte, stratejik, uygulanabilir ve değer yaratan çözümler sunmayı hedeflemektedir. Çalışmalarında, teknik doğruluğu yüksek, ticari açıdan uygulanabilir ve müvekkil odaklı bir yaklaşımı esas almaktadır.'
     ]
   },
   en: {
@@ -239,7 +239,7 @@ const copy = uiCopy[lang];
     </section>
 
     <div class="relative z-10 border-t border-[#d8d2c8] pt-0">
-      <section id="about" data-nav-section class="snap-section relative min-h-[100svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] pb-10 pt-10 md:pb-14 md:pt-6">
+      <section id="about" data-nav-section class="snap-section relative min-h-[100svh] scroll-mt-48 overflow-hidden bg-[#f0e7d9] pb-8 pt-10 md:pb-10 md:pt-6">
         <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(240,231,217,0.90),rgba(240,231,217,0.97))]"></div>
 
         <div class="section-wrap relative z-10 md:px-9 xl:px-14">
@@ -258,8 +258,8 @@ const copy = uiCopy[lang];
             </div>
 
             <div class="mt-10 border-t border-[#d4ccbe] pt-8 md:px-12 lg:px-20">
-              <div class="grid items-center gap-6 md:grid-cols-[minmax(0,0.84fr)_270px] md:gap-12">
-                <div class="max-w-[64ch] space-y-6 text-[#4c5568]">
+              <div class="grid items-center gap-6 md:grid-cols-[minmax(0,0.82fr)_300px] md:gap-12">
+                <div class="max-w-[62ch] space-y-6 text-[#4c5568] md:-ml-3">
                   <h3 class="text-center text-3xl leading-tight tracking-[0.01em] text-[#2b3447] md:text-left md:text-4xl">{founderContentByLang[lang].title}</h3>
                   <img
                     src="/assets/ozan-profile.jpeg"
@@ -267,28 +267,53 @@ const copy = uiCopy[lang];
                     class="mx-auto h-[170px] w-[170px] rounded-full border border-[#c9c1b3] object-cover shadow-[0_10px_24px_rgba(35,43,58,0.12)] md:hidden"
                     loading="lazy"
                   />
+                  <a
+                    href={OFFICE_INFO.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="founder-linkedin-btn mx-auto mt-3 inline-flex md:hidden"
+                    aria-label="LinkedIn Profili"
+                  >
+                    <span class="founder-linkedin-icon" aria-hidden="true">in</span>
+                    <span>LinkedIn</span>
+                  </a>
                   {founderContentByLang[lang].paragraphs.map((paragraph) => (
                     <p class="text-justify text-[1.045rem] leading-[2.05] tracking-[0.01em] text-[#46536b]">{paragraph}</p>
                   ))}
                 </div>
-                <img
-                  src="/assets/ozan-profile.jpeg"
-                  alt="Av. Ozan Turançiftçi"
-                  class="hidden h-[195px] w-[195px] rounded-full border border-[#c9c1b3] object-cover shadow-[0_10px_24px_rgba(35,43,58,0.12)] md:block md:h-[240px] md:w-[240px] md:justify-self-center"
-                  loading="lazy"
-                />
+                <div class="hidden md:flex md:flex-col md:items-center md:gap-3 md:justify-self-end md:translate-x-4">
+                  <img
+                    src="/assets/ozan-profile.jpeg"
+                    alt="Av. Ozan Turançiftçi"
+                    class="h-[195px] w-[195px] rounded-full border border-[#c9c1b3] object-cover shadow-[0_10px_24px_rgba(35,43,58,0.12)] md:h-[240px] md:w-[240px]"
+                    loading="lazy"
+                  />
+                  <a
+                    href={OFFICE_INFO.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="founder-linkedin-btn"
+                    aria-label="LinkedIn Profili"
+                  >
+                    <span class="founder-linkedin-icon" aria-hidden="true">in</span>
+                    <span>LinkedIn</span>
+                  </a>
+                </div>
               </div>
+              <p class="founder-signoff mt-7 text-center italic text-[1.18rem] leading-[1.85] tracking-[0.01em] text-[#3f4c63] md:mx-auto md:max-w-[74ch] md:text-[1.36rem]">
+                Hukuki uzmanlığı, ticari bakış açısı ve stratejik öngörü ile birleştirerek müvekkillerimiz için sürdürülebilir değer yaratmayı amaçlıyoruz.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="practices" data-nav-section class="snap-section section-divider relative min-h-[100svh] scroll-mt-48 overflow-hidden bg-[#e1e1dc] py-14">
+      <section id="practices" data-nav-section class="snap-section section-divider relative min-h-[100svh] scroll-mt-48 overflow-hidden bg-[#e1e1dc] py-9">
         <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(225,225,220,0.9),rgba(225,225,220,0.97))]"></div>
 
         <div class="section-wrap relative z-10 md:px-12 lg:px-20">
           <div class="mb-8 section-reveal">
-            <div class="md:grid md:grid-cols-[auto_minmax(0,1fr)] md:items-start md:gap-10">
+            <div class="md:grid md:grid-cols-[auto_minmax(0,1fr)] md:items-center md:gap-10">
               <h2 class="text-center text-5xl leading-[0.95] text-[#2b3447] md:pt-1 md:text-left md:text-6xl">{copy.practicesKicker}</h2>
               <p class="mt-5 text-justify text-lg italic leading-8 text-[#4c5568] md:mt-0">{copy.practicesLead}</p>
             </div>

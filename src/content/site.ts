@@ -14,7 +14,7 @@ export const OFFICE_INFO = {
   },
   phone: '+90 555 000 00 00',
   email: 'info@turanciftcilaw.com',
-  linkedin: 'https://www.linkedin.com/in/placeholder'
+  linkedin: 'https://www.linkedin.com/in/ozanturanciftci/'
 } as const;
 
 export type PracticeSlug = 'tax-law' | 'corporate-law' | 'immigration-law';

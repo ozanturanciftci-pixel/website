@@ -722,6 +722,53 @@ h4 {
   gap: 0.45rem;
 }
 
+.founder-linkedin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(43, 52, 71, 0.38);
+  border-radius: 999px;
+  padding: 0.35rem 0.82rem;
+  color: #2b3447;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.founder-linkedin-btn:hover {
+  background: rgba(43, 52, 71, 0.1);
+  transform: translateY(-1px);
+}
+
+.founder-linkedin-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.founder-signoff {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: founder-signoff-rise 780ms ease-out 260ms forwards;
+}
+
+@keyframes founder-signoff-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .hero-contact-pill {
   display: inline-flex;
   align-items: center;
