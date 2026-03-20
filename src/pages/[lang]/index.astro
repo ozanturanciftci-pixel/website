@@ -164,18 +164,71 @@ const founderContentByLang: Record<Lang, { title: string; paragraphs: string[] }
     ]
   },
   en: {
-    title: 'Atty. Ozan Turançiftçi – Founder',
+    title: 'Atty. Ozan Turançiftçi – Partner',
     paragraphs: [
-      'Atty. Ozan Turançiftçi is a lawyer with advisory experience for multinational companies in tax and business law. He is registered with the Istanbul Bar and focuses on international tax and corporate matters. During his career at leading advisory firms such as PwC and EY, he advised multinational clients on complex topics including direct and indirect taxes, transfer pricing, VAT and customs practices.',
-      'He has actively supported tax risk analysis, strategic planning opportunities and dispute management, and represented clients in administrative and judicial proceedings. After completing his MBA at Universidad Carlos III de Madrid, he developed a holistic perspective that combines legal expertise with business realities. He provides services in English, Turkish, Spanish and French, and leads the firm with a focus on technically sound, commercially practical and client-oriented legal solutions.'
+      'Atty. Ozan Turançiftçi is a lawyer with advisory experience for multinational clients in tax and corporate law. Throughout his career, he has applied the experience gained at globally active leading advisory firms through an approach that combines legal accuracy with commercial foresight.',
+      'With his MBA completed in Madrid and multilingual working capability, he aims to deliver strategic, practical and value-creating solutions for clients on a global scale. In his work, he follows a technically robust, commercially applicable and client-focused approach.'
     ]
   },
   es: {
-    title: 'Abg. Ozan Turançiftçi – Fundador',
+    title: 'Abg. Ozan Turançiftçi – Socio',
     paragraphs: [
-      'El Abg. Ozan Turançiftçi cuenta con experiencia asesorando a empresas multinacionales en materia fiscal y jurídica. Está colegiado en el Colegio de Abogados de Estambul y se especializa en derecho fiscal y societario internacional. A lo largo de su carrera en firmas líderes como PwC y EY, asesoró a clientes multinacionales en asuntos complejos como impuestos directos e indirectos, precios de transferencia, IVA y prácticas aduaneras.',
-      'Ha participado activamente en análisis de riesgos fiscales, planificación estratégica y gestión de controversias, representando a clientes en procedimientos administrativos y judiciales. Tras completar su MBA en la Universidad Carlos III de Madrid, consolidó una visión integral que une el derecho con la realidad empresarial. Presta servicios en inglés, turco, español y francés, y dirige el despacho con un enfoque técnico, aplicable y centrado en el cliente.'
+      'El Abg. Ozan Turançiftçi es un abogado con experiencia en asesoramiento a clientes multinacionales en derecho fiscal y societario. A lo largo de su carrera, ha aplicado la experiencia adquirida en firmas de consultoría líderes a nivel global mediante un enfoque que integra precisión jurídica y visión comercial.',
+      'Con su MBA completado en Madrid y su capacidad de trabajo multilingüe, busca ofrecer soluciones estratégicas, aplicables y generadoras de valor para sus clientes a escala global. En su práctica, adopta un enfoque de alta solidez técnica, viabilidad comercial y orientación al cliente.'
     ]
+  }
+};
+const founderSignoffByLang: Record<Lang, string> = {
+  tr: 'Hukuki uzmanlığı, ticari bakış açısı ve stratejik öngörü ile birleştirerek müvekkillerimiz için sürdürülebilir değer yaratmayı amaçlıyoruz.',
+  en: 'We aim to create sustainable value for our clients by combining legal expertise, commercial perspective and strategic foresight.',
+  es: 'Nuestro objetivo es crear valor sostenible para nuestros clientes combinando experiencia jurídica, perspectiva comercial y visión estratégica.'
+};
+const contactLocaleByLang: Record<
+  Lang,
+  {
+    istanbulCity: string;
+    istanbulAddress: string;
+    madridCity: string;
+    madridAddress: string;
+    emailAria: string;
+    profileAria: string;
+    founderAlt: string;
+    istanbulAlt: string;
+    madridAlt: string;
+  }
+> = {
+  tr: {
+    istanbulCity: 'İstanbul',
+    istanbulAddress: 'Kadıköy, İstanbul',
+    madridCity: 'Madrid',
+    madridAddress: 'Embajadores, Madrid',
+    emailAria: 'E-posta gönder',
+    profileAria: 'LinkedIn Profili',
+    founderAlt: 'Av. Ozan Turançiftçi',
+    istanbulAlt: 'İstanbul ofis',
+    madridAlt: 'Madrid ofis'
+  },
+  en: {
+    istanbulCity: 'Istanbul',
+    istanbulAddress: 'Kadikoy, Istanbul',
+    madridCity: 'Madrid',
+    madridAddress: 'Embajadores, Madrid',
+    emailAria: 'Send email',
+    profileAria: 'LinkedIn Profile',
+    founderAlt: 'Atty. Ozan Turançiftçi',
+    istanbulAlt: 'Istanbul office',
+    madridAlt: 'Madrid office'
+  },
+  es: {
+    istanbulCity: 'Estambul',
+    istanbulAddress: 'Kadikoy, Estambul',
+    madridCity: 'Madrid',
+    madridAddress: 'Embajadores, Madrid',
+    emailAria: 'Enviar correo',
+    profileAria: 'Perfil de LinkedIn',
+    founderAlt: 'Abg. Ozan Turançiftçi',
+    istanbulAlt: 'Oficina de Estambul',
+    madridAlt: 'Oficina de Madrid'
   }
 };
 const aboutLogoByLang: Record<Lang, string> = {
@@ -263,7 +316,7 @@ const copy = uiCopy[lang];
                   <h3 class="text-center text-3xl leading-tight tracking-[0.01em] text-[#2b3447] md:text-left md:text-4xl">{founderContentByLang[lang].title}</h3>
                   <img
                     src="/assets/ozan-profile.jpeg"
-                    alt="Av. Ozan Turançiftçi"
+                    alt={contactLocaleByLang[lang].founderAlt}
                     class="mx-auto h-[170px] w-[170px] rounded-full border border-[#c9c1b3] object-cover shadow-[0_10px_24px_rgba(35,43,58,0.12)] md:hidden"
                     loading="lazy"
                   />
@@ -272,7 +325,7 @@ const copy = uiCopy[lang];
                     target="_blank"
                     rel="noreferrer"
                     class="founder-linkedin-btn mx-auto mt-3 inline-flex md:hidden"
-                    aria-label="LinkedIn Profili"
+                    aria-label={contactLocaleByLang[lang].profileAria}
                   >
                     <span class="founder-linkedin-icon" aria-hidden="true">in</span>
                     <span>LinkedIn</span>
@@ -284,7 +337,7 @@ const copy = uiCopy[lang];
                 <div class="hidden md:flex md:flex-col md:items-center md:gap-3 md:justify-self-end md:translate-x-4">
                   <img
                     src="/assets/ozan-profile.jpeg"
-                    alt="Av. Ozan Turançiftçi"
+                    alt={contactLocaleByLang[lang].founderAlt}
                     class="h-[195px] w-[195px] rounded-full border border-[#c9c1b3] object-cover shadow-[0_10px_24px_rgba(35,43,58,0.12)] md:h-[240px] md:w-[240px]"
                     loading="lazy"
                   />
@@ -293,7 +346,7 @@ const copy = uiCopy[lang];
                     target="_blank"
                     rel="noreferrer"
                     class="founder-linkedin-btn"
-                    aria-label="LinkedIn Profili"
+                    aria-label={contactLocaleByLang[lang].profileAria}
                   >
                     <span class="founder-linkedin-icon" aria-hidden="true">in</span>
                     <span>LinkedIn</span>
@@ -301,7 +354,7 @@ const copy = uiCopy[lang];
                 </div>
               </div>
               <p class="founder-signoff mt-7 text-center italic text-[1.18rem] leading-[1.85] tracking-[0.01em] text-[#3f4c63] md:mx-auto md:max-w-[74ch] md:text-[1.36rem]">
-                Hukuki uzmanlığı, ticari bakış açısı ve stratejik öngörü ile birleştirerek müvekkillerimiz için sürdürülebilir değer yaratmayı amaçlıyoruz.
+                {founderSignoffByLang[lang]}
               </p>
             </div>
           </div>
@@ -367,7 +420,7 @@ const copy = uiCopy[lang];
                 <a
                   href={`mailto:${OFFICE_INFO.email}`}
                   class="inline-flex items-center gap-2 rounded-full border border-[#2b3447] px-4 py-2 text-[#2b3447] transition hover:bg-[#2b3447] hover:text-white"
-                  aria-label="E-posta gönder"
+                  aria-label={contactLocaleByLang[lang].emailAria}
                 >
                   <svg viewBox="0 0 24 24" fill="none" class="h-4 w-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 6h16v12H4z"></path>
@@ -391,28 +444,28 @@ const copy = uiCopy[lang];
                 <div class="grid grid-cols-[120px_minmax(0,1fr)] items-start gap-4 md:grid-cols-[200px_minmax(0,1fr)]">
                   <img
                     src="/assets/contact-istanbul.jpg"
-                    alt="Istanbul office"
+                    alt={contactLocaleByLang[lang].istanbulAlt}
                     class="h-52 w-full rounded-2xl border border-[#c8c8c8] object-cover object-[center_34%] shadow-[0_8px_20px_rgba(0,0,0,0.05)] md:h-64"
                     loading="lazy"
                   />
                   <div>
-                    <p class="text-xl font-semibold text-[#222b3d]">İstanbul</p>
+                    <p class="text-xl font-semibold text-[#222b3d]">{contactLocaleByLang[lang].istanbulCity}</p>
                     <p class="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#55607a]">{copy.addressTitle}</p>
-                    <p class="mt-2 text-base leading-[1.7] text-[#1f2633] md:text-[1.02rem]">Kadıköy, İstanbul</p>
+                    <p class="mt-2 text-base leading-[1.7] text-[#1f2633] md:text-[1.02rem]">{contactLocaleByLang[lang].istanbulAddress}</p>
                   </div>
                 </div>
 
                 <div class="grid grid-cols-[120px_minmax(0,1fr)] items-start gap-4 md:grid-cols-[200px_minmax(0,1fr)]">
                   <img
                     src="/assets/contact-madrid.jpg"
-                    alt="Madrid office"
+                    alt={contactLocaleByLang[lang].madridAlt}
                     class="h-52 w-full rounded-2xl border border-[#c8c8c8] object-cover object-top shadow-[0_8px_20px_rgba(0,0,0,0.05)] md:h-64"
                     loading="lazy"
                   />
                   <div>
-                    <p class="text-xl font-semibold text-[#222b3d]">Madrid</p>
+                    <p class="text-xl font-semibold text-[#222b3d]">{contactLocaleByLang[lang].madridCity}</p>
                     <p class="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#55607a]">{copy.addressTitle}</p>
-                    <p class="mt-2 text-base leading-[1.7] text-[#1f2633] md:text-[1.02rem]">Embajadores, Madrid</p>
+                    <p class="mt-2 text-base leading-[1.7] text-[#1f2633] md:text-[1.02rem]">{contactLocaleByLang[lang].madridAddress}</p>
                   </div>
                 </div>
               </div>
